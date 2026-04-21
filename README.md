@@ -100,6 +100,22 @@ Main analysis summary:
 
 - `docs/analysis_summary.md`
 
+## Python EDA
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run EDA:
+
+```bash
+python notebooks/eda_analysis.py
+```
+
+The script creates charts in `dashboards/figures/`.
+
 ## Next steps
 
 1. Create the database in PostgreSQL.
