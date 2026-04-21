@@ -1,40 +1,40 @@
-# Project Scope
+# Описание проекта
 
-## Business case
+## Бизнес-кейс
 
-We are analyzing an e-commerce product with a standard customer journey:
+Мы анализируем e-commerce продукт со стандартным пользовательским путем:
 
-1. user visits the website
-2. user views products
-3. user adds products to cart
-4. user starts checkout
-5. user completes an order
+1. пользователь заходит на сайт
+2. пользователь просматривает товары
+3. пользователь добавляет товары в корзину
+4. пользователь переходит к оформлению заказа
+5. пользователь завершает покупку
 
-The goal is to understand product performance and user behavior.
+Цель - понять эффективность продукта и поведение пользователей.
 
-## Core questions
+## Основные вопросы
 
-- How many users visit the store every day?
-- What is the conversion from session to purchase?
-- Which traffic sources bring the highest value users?
-- Which product categories generate the most revenue?
-- What is the average order value?
-- How well do users retain after signup?
+- Сколько пользователей посещает магазин каждый день?
+- Какая конверсия из сессии в покупку?
+- Какие источники трафика приводят наиболее ценных пользователей?
+- Какие категории товаров дают больше всего выручки?
+- Какой средний чек?
+- Как пользователи удерживаются после регистрации?
 
-## Key metrics
+## Ключевые метрики
 
 - DAU
-- number of sessions
-- number of orders
-- revenue
-- average order value
-- session-to-order conversion
-- cart-to-order conversion
-- cohort retention
+- количество сессий
+- количество заказов
+- выручка
+- средний чек
+- конверсия из сессии в заказ
+- конверсия из корзины в заказ
+- когортный retention
 
-## Data model
+## Модель данных
 
-The first version of the project uses six tables:
+Первая версия проекта использует шесть таблиц:
 
 - `users`
 - `products`
@@ -43,12 +43,12 @@ The first version of the project uses six tables:
 - `orders`
 - `order_items`
 
-## Why this project is useful
+## Почему проект полезен
 
-This project helps build a strong base for:
+Проект помогает сформировать базу для:
 
-- data analyst roles
-- product analyst roles
-- future transition to data science
+- роли аналитика данных
+- роли продуктового аналитика
+- дальнейшего перехода в data science
 
-It combines SQL, database design, business metrics, and visualization.
+Он объединяет SQL, проектирование БД, бизнес-метрики и визуализацию.

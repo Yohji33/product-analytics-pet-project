@@ -1,42 +1,42 @@
-# First SQL Tasks
+# Первые SQL-задачи
 
-These are the first tasks for the project.
-They are ordered from easier to more analytical.
+Это стартовый набор задач для проекта.
+Они расположены от простых к более аналитическим.
 
-## Block 1. Understand the data
+## Блок 1. Понимание данных
 
-1. Count rows in each table.
-2. Check the date range of sessions and orders.
-3. Find how many unique users made at least one order.
-4. Find how many users added items to cart but never purchased.
+1. Посчитать количество строк в каждой таблице.
+2. Проверить диапазон дат по сессиям и заказам.
+3. Найти, сколько уникальных пользователей сделали хотя бы один заказ.
+4. Найти, сколько пользователей добавили товар в корзину, но не совершили покупку.
 
-## Block 2. Business metrics
+## Блок 2. Бизнес-метрики
 
-5. Calculate total revenue.
-6. Calculate the total number of paid orders.
-7. Calculate average order value.
-8. Find revenue by product category.
-9. Find the top 5 products by revenue.
+5. Посчитать общую выручку.
+6. Посчитать количество оплаченных заказов.
+7. Посчитать средний чек.
+8. Найти выручку по категориям товаров.
+9. Найти топ-5 товаров по выручке.
 
-## Block 3. Product analytics
+## Блок 3. Продуктовая аналитика
 
-10. Calculate session-to-order conversion by day.
-11. Calculate user conversion from `view_item` to `add_to_cart`.
-12. Calculate user conversion from `add_to_cart` to `purchase`.
-13. Compare conversion by traffic source.
-14. Compare conversion by device type.
+10. Посчитать конверсию из сессии в заказ по дням.
+11. Посчитать конверсию пользователей из `view_item` в `add_to_cart`.
+12. Посчитать конверсию пользователей из `add_to_cart` в `purchase`.
+13. Сравнить конверсию по источникам трафика.
+14. Сравнить конверсию по типам устройств.
 
-## Block 4. Retention
+## Блок 4. Retention
 
-15. Build monthly signup cohorts.
-16. Calculate retention for month 0, month 1, and month 2.
-17. Compare retention between acquisition channels.
+15. Построить месячные когорты по регистрации.
+16. Посчитать retention для месяца 0, месяца 1 и месяца 2.
+17. Сравнить retention между каналами привлечения.
 
-## Learning goal
+## Цель
 
-After these tasks, you should be able to:
+После этих задач нужно уметь:
 
-- understand the schema
-- join tables correctly
-- calculate business metrics in SQL
-- think like a product analyst
+- понимать схему данных
+- корректно соединять таблицы
+- считать бизнес-метрики в SQL
+- мыслить как продуктовый аналитик

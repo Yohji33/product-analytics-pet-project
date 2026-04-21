@@ -1,125 +1,125 @@
-# Analysis Summary
+# Итоги анализа
 
-## Dataset overview
+## Обзор данных
 
-The project uses synthetic e-commerce data generated for portfolio practice.
+Проект использует синтетические e-commerce данные, сгенерированные для портфолио и практики аналитики.
 
-Current dataset:
+Текущий датасет:
 
-- users: 500
-- sessions: 2,225
-- paid orders: 425
-- events: 6,752
-- revenue: 221,082.40
-- average order value: 520.19
-- session-to-order conversion: 19.10%
+- пользователи: 500
+- сессии: 2 225
+- оплаченные заказы: 425
+- события: 6 752
+- выручка: 221 082.40
+- средний чек: 520.19
+- конверсия из сессии в заказ: 19.10%
 
-## Monthly dynamics
+## Динамика по месяцам
 
-December 2025 is the strongest month in the dataset:
+Самый сильный месяц в датасете - декабрь 2025:
 
-- revenue: 23,873.00
-- paid orders: 48
-- session-to-order conversion: 24.49%
+- выручка: 23 873.00
+- оплаченные заказы: 48
+- конверсия из сессии в заказ: 24.49%
 
-July 2025 also shows strong activity:
+Июль 2025 также показывает высокую активность:
 
-- active users: 110
-- sessions: 205
-- paid orders: 46
+- активные пользователи: 110
+- сессии: 205
+- оплаченные заказы: 46
 
-March 2026 should be interpreted carefully because it is an incomplete month in the generated dataset.
+Март 2026 нужно интерпретировать осторожно, потому что это неполный месяц в сгенерированных данных.
 
-## Funnel analysis
+## Анализ воронки
 
-Funnel steps:
+Шаги воронки:
 
 1. `view_item`
 2. `add_to_cart`
 3. `purchase`
 
-Results:
+Результаты:
 
-- viewed users: 500
-- cart users: 385
-- purchase users: 290
-- view-to-cart conversion: 77.00%
-- cart-to-purchase conversion: 75.32%
-- view-to-purchase conversion: 58.00%
+- пользователи, просмотревшие товар: 500
+- пользователи, добавившие товар в корзину: 385
+- пользователи, совершившие покупку: 290
+- конверсия из просмотра в корзину: 77.00%
+- конверсия из корзины в покупку: 75.32%
+- конверсия из просмотра в покупку: 58.00%
 
-Main interpretation:
+Основная интерпретация:
 
-The largest user loss happens between product view and cart addition.
-This may indicate issues with product cards, pricing clarity, product description, reviews, or call-to-action visibility.
+Самая большая потеря пользователей происходит между просмотром товара и добавлением в корзину.
+Это может указывать на проблемы с карточками товаров, прозрачностью цены, описанием, отзывами или заметностью CTA-кнопки.
 
-## Traffic source analysis
+## Анализ источников трафика
 
-Best traffic source by view-to-purchase conversion:
+Лучший источник по конверсии из просмотра в покупку:
 
 - telegram: 32.16%
 
-Lowest traffic source by view-to-purchase conversion:
+Самый слабый источник по конверсии из просмотра в покупку:
 
 - google: 23.36%
 
-Interpretation:
+Интерпретация:
 
-Telegram shows the highest purchase conversion and may bring warmer traffic.
-However, traffic source decisions should also include traffic volume, acquisition cost, margin, and retention.
+Telegram показывает самую высокую покупательскую конверсию и может приводить более теплую аудиторию.
+Но решение о перераспределении бюджета нужно принимать с учетом объема трафика, стоимости привлечения, маржи и retention.
 
-## Acquisition channel analysis
+## Анализ каналов привлечения
 
-Top channels by revenue:
+Лучшие каналы по выручке:
 
-- referral: 51,970.96
-- social: 51,335.17
-- email: 45,207.53
+- referral: 51 970.96
+- social: 51 335.17
+- email: 45 207.53
 
-Best channel by user-to-buyer conversion:
+Лучший канал по конверсии пользователя в покупателя:
 
 - email: 62.37%
 
-Interpretation:
+Интерпретация:
 
-Referral and social bring the highest revenue, while email has the best user-to-buyer conversion.
-Email users may be more loyal or better warmed up before purchase.
+Referral и social дают наибольшую выручку, а email показывает лучшую конверсию пользователя в покупателя.
+Это может означать, что email-аудитория более лояльна или лучше прогрета перед покупкой.
 
-## Device analysis
+## Анализ устройств
 
-Best device type by revenue:
+Лучший тип устройства по выручке:
 
-- desktop: 97,783.89
+- desktop: 97 783.89
 
-Best device type by session-to-order conversion:
+Лучший тип устройства по конверсии из сессии в заказ:
 
 - desktop: 21.12%
 
-Lowest device type by conversion:
+Самый слабый тип устройства по конверсии:
 
 - mobile: 15.22%
 
-Interpretation:
+Интерпретация:
 
-Desktop users convert better than mobile users.
-The mobile funnel should be investigated further: checkout UX, page speed, payment flow, and product card layout may affect conversion.
+Desktop-пользователи конвертируются лучше, чем mobile-пользователи.
+Мобильную воронку стоит изучить глубже: UX checkout, скорость загрузки, платежный сценарий и структура карточки товара могут влиять на конверсию.
 
-## Category analysis
+## Анализ категорий
 
-Top categories by revenue:
+Лучшие категории по выручке:
 
-- Electronics: 80,141.63
-- Home: 67,450.40
-- Sports: 48,133.28
-- Beauty: 32,551.16
+- Electronics: 80 141.63
+- Home: 67 450.40
+- Sports: 48 133.28
+- Beauty: 32 551.16
 
-Interpretation:
+Интерпретация:
 
-Electronics and Home are the main revenue drivers.
-Beauty has the lowest revenue despite a similar number of sold items, which may be explained by lower average item price.
+Electronics и Home являются основными драйверами выручки.
+Beauty показывает самую низкую выручку при сопоставимом количестве проданных товаров, что может объясняться более низкой средней ценой товара.
 
-## Product analysis
+## Анализ товаров
 
-Top products by revenue:
+Лучшие товары по выручке:
 
 - Orion Headphones
 - Atlas Laptop
@@ -127,16 +127,16 @@ Top products by revenue:
 - Aero Storage Box
 - Aero Phone
 
-Interpretation:
+Интерпретация:
 
-The top products are concentrated mostly in Electronics and Home categories.
-These categories should be prioritized in dashboard monitoring and business analysis.
+Топовые товары сосредоточены в основном в категориях Electronics и Home.
+Эти категории стоит приоритизировать в мониторинге дашборда и дальнейшем бизнес-анализе.
 
-## Next analytical steps
+## Следующие аналитические шаги
 
-- Add customer acquisition cost data.
-- Calculate CAC, LTV, and payback period.
-- Add repeat purchase metrics.
-- Build a Power BI dashboard.
-- Create a Jupyter notebook with EDA and visualizations.
-- Add a simple predictive model for purchase probability or churn risk.
+- добавить данные о стоимости привлечения
+- рассчитать CAC, LTV и payback period
+- добавить метрики повторных покупок
+- собрать дашборд в Power BI
+- развить Jupyter Notebook с EDA и визуализациями
+- добавить простую модель вероятности покупки или риска оттока

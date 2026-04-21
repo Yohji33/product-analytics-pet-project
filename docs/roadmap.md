@@ -1,33 +1,33 @@
-# Roadmap
+# Roadmap проекта
 
-## Stage 1. Database foundation
+## Этап 1. Основа базы данных
 
-- [x] Define the business case
-- [x] Design the first version of the schema
-- [x] Prepare starter analytical queries
-- [ ] Create the database in PostgreSQL
+- [x] Описать бизнес-кейс
+- [x] Спроектировать первую версию схемы
+- [x] Подготовить стартовые аналитические запросы
+- [x] Создать базу данных в PostgreSQL
 
-## Stage 2. Data preparation
+## Этап 2. Подготовка данных
 
-- [ ] Generate sample datasets
-- [ ] Load data into PostgreSQL
-- [ ] Validate row counts and foreign keys
+- [x] Сгенерировать тестовые данные
+- [x] Загрузить данные в PostgreSQL
+- [x] Проверить количество строк и связи между таблицами
 
-## Stage 3. SQL analytics
+## Этап 3. SQL-аналитика
 
-- [ ] Revenue analysis
-- [ ] Funnel analysis
-- [ ] Retention analysis
-- [ ] Product category analysis
+- [x] Анализ выручки
+- [x] Анализ воронки
+- [x] Анализ retention
+- [x] Анализ категорий товаров
 
-## Stage 4. Python analytics
+## Этап 4. Python-аналитика
 
-- [ ] Build a Jupyter notebook
-- [ ] Add exploratory analysis
-- [ ] Add metric visualizations
+- [x] Создать Jupyter Notebook
+- [x] Добавить EDA
+- [x] Добавить визуализации метрик
 
-## Stage 5. Dashboard
+## Этап 5. Дашборд
 
-- [ ] Build a Power BI dashboard
-- [ ] Add screenshots to the repository
-- [ ] Summarize key insights in README
+- [ ] Собрать дашборд в Power BI
+- [ ] Добавить скриншоты дашборда в репозиторий
+- [ ] Дополнить README ключевыми выводами по дашборду

@@ -1,30 +1,30 @@
-# Product Analytics Pet Project
+# Пет-проект по продуктовой аналитике
 
-Portfolio project for practicing data analytics and product analytics on synthetic e-commerce data.
+Портфолио-проект для практики data analytics и product analytics на синтетических данных интернет-магазина.
 
-The project covers the full analytical workflow:
+Проект охватывает полный аналитический цикл:
 
-- data generation
-- PostgreSQL database design
-- SQL analysis
-- Python EDA
-- dashboard-ready visualizations
-- business insights
+- генерация данных
+- проектирование базы данных в PostgreSQL
+- SQL-анализ
+- EDA в Python
+- подготовка визуализаций для дашборда
+- формулирование бизнес-выводов
 
-## Project Scenario
+## Сценарий проекта
 
-We analyze a simulated online store and answer product and business questions:
+Мы анализируем условный интернет-магазин и отвечаем на продуктовые и бизнес-вопросы:
 
-- How many users visit the product?
-- How many users add items to cart?
-- How many users complete purchases?
-- What is the session-to-order conversion?
-- Which channels generate the most revenue?
-- Which traffic sources convert best?
-- Which product categories drive revenue?
-- How does retention change by signup cohort?
+- сколько пользователей приходит в продукт
+- сколько пользователей добавляет товары в корзину
+- сколько пользователей завершает покупку
+- какая конверсия из сессии в заказ
+- какие каналы дают больше выручки
+- какие источники трафика лучше конвертируют
+- какие категории товаров приносят больше денег
+- как меняется retention по когортам регистрации
 
-## Stack
+## Стек
 
 - PostgreSQL
 - SQL
@@ -34,176 +34,176 @@ We analyze a simulated online store and answer product and business questions:
 - matplotlib
 - seaborn
 - Jupyter Notebook
-- Power BI, planned
+- Power BI, запланировано
 
-## Data Model
+## Модель данных
 
-The database contains six main tables:
+В базе используется шесть основных таблиц:
 
-- `users` - user profile and acquisition data
-- `products` - product catalog
-- `sessions` - user visits
-- `events` - product events such as `view_item`, `add_to_cart`, `purchase`
-- `orders` - order-level data
-- `order_items` - product-level order data
+- `users` - пользователи и данные о привлечении
+- `products` - каталог товаров
+- `sessions` - пользовательские сессии
+- `events` - события пользователей: `view_item`, `add_to_cart`, `purchase`
+- `orders` - заказы
+- `order_items` - товары внутри заказов
 
-## Repository Structure
+## Структура репозитория
 
-- `data/sample/` - generated CSV data
-- `sql/` - database schema, data loading scripts, and analytical queries
-- `notebooks/` - Python EDA notebook and script
-- `dashboards/figures/` - generated charts
-- `docs/` - project scope, roadmap, setup guide, and analysis summary
-- `scripts/` - data and notebook generation scripts
+- `data/sample/` - сгенерированные CSV-данные
+- `sql/` - схема БД, загрузка данных и аналитические запросы
+- `notebooks/` - EDA в Python и Jupyter Notebook
+- `dashboards/figures/` - сгенерированные графики
+- `docs/` - описание проекта, roadmap, настройка PostgreSQL и выводы
+- `scripts/` - скрипты генерации данных и notebook
 
-## Key Metrics
+## Ключевые метрики
 
-Current generated dataset:
+Текущий сгенерированный датасет:
 
-- Users: 500
-- Sessions: 2,225
-- Paid orders: 425
-- Events: 6,752
-- Revenue: 221,082.40
-- Average order value: 520.19
-- Session-to-order conversion: 19.10%
+- Пользователи: 500
+- Сессии: 2 225
+- Оплаченные заказы: 425
+- События: 6 752
+- Выручка: 221 082.40
+- Средний чек: 520.19
+- Конверсия из сессии в заказ: 19.10%
 
-## Key Findings
+## Основные выводы
 
-### Monthly Dynamics
+### Динамика по месяцам
 
-December 2025 is the strongest month:
+Самый сильный месяц в данных - декабрь 2025:
 
-- Revenue: 23,873.00
-- Paid orders: 48
-- Session-to-order conversion: 24.49%
+- Выручка: 23 873.00
+- Оплаченные заказы: 48
+- Конверсия из сессии в заказ: 24.49%
 
-### Funnel
+### Воронка
 
-Product funnel:
+Продуктовая воронка:
 
 `view_item -> add_to_cart -> purchase`
 
-Results:
+Результаты:
 
-- Viewed users: 500
-- Cart users: 385
-- Purchase users: 290
-- View-to-cart conversion: 77.00%
-- Cart-to-purchase conversion: 75.32%
-- View-to-purchase conversion: 58.00%
+- Пользователи, просмотревшие товар: 500
+- Пользователи, добавившие товар в корзину: 385
+- Пользователи, совершившие покупку: 290
+- Конверсия из просмотра в корзину: 77.00%
+- Конверсия из корзины в покупку: 75.32%
+- Конверсия из просмотра в покупку: 58.00%
 
-### Traffic Sources
+### Источники трафика
 
-Best source by view-to-purchase conversion:
+Лучший источник по конверсии из просмотра в покупку:
 
 - `telegram`: 32.16%
 
-Lowest source:
+Самый слабый источник:
 
 - `google`: 23.36%
 
-### Acquisition Channels
+### Каналы привлечения
 
-Top channels by revenue:
+Лучшие каналы по выручке:
 
-- `referral`: 51,970.96
-- `social`: 51,335.17
-- `email`: 45,207.53
+- `referral`: 51 970.96
+- `social`: 51 335.17
+- `email`: 45 207.53
 
-Best channel by user-to-buyer conversion:
+Лучший канал по конверсии пользователя в покупателя:
 
 - `email`: 62.37%
 
-### Categories
+### Категории товаров
 
-Top categories by revenue:
+Лучшие категории по выручке:
 
-- Electronics: 80,141.63
-- Home: 67,450.40
-- Sports: 48,133.28
-- Beauty: 32,551.16
+- Electronics: 80 141.63
+- Home: 67 450.40
+- Sports: 48 133.28
+- Beauty: 32 551.16
 
-## Visualizations
+## Визуализации
 
-Generated EDA charts:
+Сгенерированные графики EDA:
 
-- [Monthly revenue](dashboards/figures/monthly_revenue.png)
-- [User funnel](dashboards/figures/user_funnel.png)
-- [Revenue by category](dashboards/figures/category_revenue.png)
-- [Device conversion](dashboards/figures/device_conversion.png)
+- [Выручка по месяцам](dashboards/figures/monthly_revenue.png)
+- [Пользовательская воронка](dashboards/figures/user_funnel.png)
+- [Выручка по категориям](dashboards/figures/category_revenue.png)
+- [Конверсия по устройствам](dashboards/figures/device_conversion.png)
 
-## Main Files
+## Основные файлы
 
 SQL:
 
-- [Database schema](sql/01_create_schema.sql)
-- [Data loading script](sql/03_load_data.sql)
-- [Validation queries](sql/04_validation_queries.sql)
-- [Product analysis queries](sql/05_product_analysis.sql)
+- [Схема базы данных](sql/01_create_schema.sql)
+- [Загрузка данных](sql/03_load_data.sql)
+- [Проверочные запросы](sql/04_validation_queries.sql)
+- [Продуктовый анализ](sql/05_product_analysis.sql)
 
 Python:
 
 - [EDA notebook](notebooks/01_eda_analysis.ipynb)
 - [EDA script](notebooks/eda_analysis.py)
-- [Sample data generator](scripts/generate_sample_data.py)
+- [Генератор данных](scripts/generate_sample_data.py)
 
-Documentation:
+Документация:
 
-- [Analysis summary](docs/analysis_summary.md)
-- [PostgreSQL setup](docs/postgres_setup.md)
-- [Project scope](docs/project_scope.md)
+- [Итоги анализа](docs/analysis_summary.md)
+- [Настройка PostgreSQL](docs/postgres_setup.md)
+- [Описание проекта](docs/project_scope.md)
 - [Roadmap](docs/roadmap.md)
 
-## How to Reproduce
+## Как воспроизвести проект
 
-Install dependencies:
+Установить зависимости:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Generate sample data:
+Сгенерировать тестовые данные:
 
 ```bash
 python scripts/generate_sample_data.py
 ```
 
-Create PostgreSQL schema:
+Создать схему PostgreSQL:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/01_create_schema.sql'
 ```
 
-Load sample data:
+Загрузить данные:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/03_load_data.sql'
 ```
 
-Run validation:
+Проверить загрузку:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/04_validation_queries.sql'
 ```
 
-Run product analysis:
+Запустить продуктовый анализ:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/05_product_analysis.sql'
 ```
 
-Run Python EDA:
+Запустить Python EDA:
 
 ```bash
 python notebooks/eda_analysis.py
 ```
 
-## Next Steps
+## Следующие шаги
 
-- Build Power BI dashboard
-- Add dashboard screenshots
-- Add acquisition cost data
-- Calculate CAC, LTV, and payback period
-- Add repeat purchase analysis
-- Add a simple ML model for purchase probability
+- собрать дашборд в Power BI
+- добавить скриншоты дашборда
+- добавить данные о стоимости привлечения
+- рассчитать CAC, LTV и payback period
+- добавить анализ повторных покупок
+- добавить простую ML-модель для оценки вероятности покупки

@@ -1,15 +1,15 @@
 # Notebooks
 
-This folder is used for Python analysis and Jupyter notebooks.
+Эта папка используется для Python-анализа и Jupyter Notebook.
 
-Main notebook:
+Основной notebook:
 
 - `01_eda_analysis.ipynb`
 
-The first EDA stage can be reproduced with:
+Первый EDA-этап можно воспроизвести командой:
 
 ```bash
 python notebooks/eda_analysis.py
 ```
 
-The script reads CSV files from `data/sample/` and saves charts to `dashboards/figures/`.
+Скрипт читает CSV-файлы из `data/sample/` и сохраняет графики в `dashboards/figures/`.

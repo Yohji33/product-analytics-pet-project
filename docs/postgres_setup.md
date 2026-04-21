@@ -1,56 +1,56 @@
-# PostgreSQL Setup
+# Настройка PostgreSQL
 
-## Goal
+## Цель
 
-Create a local database for the project, load generated CSV files, and run the first analytical queries.
+Создать локальную базу данных для проекта, загрузить сгенерированные CSV-файлы и запустить первые аналитические запросы.
 
-## Recommended flow
+## Рекомендуемый порядок
 
-1. Create a database named `product_analytics`.
-2. Run the schema script.
-3. Load sample CSV data.
-4. Run validation queries.
-5. Run analytical queries.
+1. Создать базу данных `product_analytics`.
+2. Запустить скрипт создания схемы.
+3. Загрузить CSV-данные.
+4. Запустить проверочные запросы.
+5. Запустить аналитические запросы.
 
-## Example commands
+## Пример команд
 
-Use the installed PostgreSQL client:
+Использовать установленный клиент PostgreSQL:
 
 ```powershell
 & "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d postgres
 ```
 
-Inside `psql`, create a new database:
+Внутри `psql` создать новую базу:
 
 ```sql
 CREATE DATABASE product_analytics;
 ```
 
-Then connect to it:
+Подключиться к ней:
 
 ```sql
 \c product_analytics
 ```
 
-Run the schema:
+Запустить схему:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/01_create_schema.sql'
 ```
 
-Load the data:
+Загрузить данные:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/03_load_data.sql'
 ```
 
-Check that everything loaded correctly:
+Проверить, что данные загрузились корректно:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/04_validation_queries.sql'
 ```
 
-Run the first analytics:
+Запустить первый аналитический блок:
 
 ```sql
 \i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/02_analytics_queries.sql'

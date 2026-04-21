@@ -1,8 +1,8 @@
--- Product Analytics Report
--- Project: E-commerce product analytics
--- Goal: calculate key product and business metrics for portfolio analysis.
+-- Отчет по продуктовой аналитике
+-- Проект: аналитика e-commerce продукта
+-- Цель: посчитать ключевые продуктовые и бизнес-метрики для портфолио.
 
--- 1. Overall business metrics
+-- 1. Общие бизнес-метрики
 WITH user_metrics AS (
     SELECT COUNT(DISTINCT user_id) AS users_count
     FROM users
@@ -30,7 +30,7 @@ FROM user_metrics um
 CROSS JOIN session_metrics sm
 CROSS JOIN order_metrics om;
 
--- 2. Monthly revenue, orders, AOV and conversion
+-- 2. Выручка, заказы, средний чек и конверсия по месяцам
 WITH monthly_sessions AS (
     SELECT
         DATE_TRUNC('month', session_started_at)::DATE AS month,
@@ -63,7 +63,7 @@ FROM monthly_sessions ms
 LEFT JOIN monthly_orders mo ON mo.month = ms.month
 ORDER BY ms.month;
 
--- 3. Funnel: view item -> add to cart -> purchase
+-- 3. Воронка: просмотр товара -> добавление в корзину -> покупка
 WITH funnel AS (
     SELECT
         COUNT(DISTINCT CASE WHEN event_type = 'view_item' THEN user_id END) AS viewed_users,
@@ -80,7 +80,7 @@ SELECT
     ROUND(purchase_users::NUMERIC / NULLIF(viewed_users, 0), 4) AS view_to_purchase_conversion
 FROM funnel;
 
--- 4. Funnel by traffic source
+-- 4. Воронка по источникам трафика
 WITH source_funnel AS (
     SELECT
         s.traffic_source,
@@ -102,7 +102,7 @@ SELECT
 FROM source_funnel
 ORDER BY view_to_purchase_conversion DESC;
 
--- 5. Revenue by acquisition channel
+-- 5. Выручка по каналам привлечения
 SELECT
     u.acquisition_channel,
     COUNT(DISTINCT u.user_id) AS users_count,
@@ -118,7 +118,7 @@ LEFT JOIN orders o
 GROUP BY u.acquisition_channel
 ORDER BY revenue DESC;
 
--- 6. Revenue by device type
+-- 6. Выручка по типам устройств
 SELECT
     s.device_type,
     COUNT(DISTINCT s.session_id) AS sessions_count,
@@ -133,7 +133,7 @@ LEFT JOIN orders o
 GROUP BY s.device_type
 ORDER BY revenue DESC;
 
--- 7. Top product categories by revenue
+-- 7. Лучшие категории товаров по выручке
 SELECT
     p.category,
     COUNT(DISTINCT o.order_id) AS paid_orders_count,
@@ -147,7 +147,7 @@ WHERE o.payment_status = 'paid'
 GROUP BY p.category
 ORDER BY revenue DESC;
 
--- 8. Top 10 products by revenue
+-- 8. Топ-10 товаров по выручке
 SELECT
     p.product_id,
     p.product_name,
@@ -163,7 +163,7 @@ GROUP BY p.product_id, p.product_name, p.category
 ORDER BY revenue DESC
 LIMIT 10;
 
--- 9. Monthly cohort retention
+-- 9. Месячный когортный retention
 WITH cohort_base AS (
     SELECT
         user_id,
@@ -207,7 +207,7 @@ FROM cohort_activity ca
 JOIN cohort_sizes cs ON cs.cohort_month = ca.cohort_month
 ORDER BY ca.cohort_month, ca.month_number;
 
--- 10. Users who added to cart but did not purchase
+-- 10. Пользователи, которые добавили товар в корзину, но не совершили покупку
 WITH cart_users AS (
     SELECT DISTINCT user_id
     FROM events

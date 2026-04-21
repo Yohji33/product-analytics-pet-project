@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import json
-from textwrap import dedent
 from pathlib import Path
+from textwrap import dedent
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -32,17 +32,17 @@ def main() -> None:
         "cells": [
             markdown_cell(
                 """
-                # E-commerce Product Analytics: EDA
+                # EDA для e-commerce проекта
 
-                This notebook explores synthetic e-commerce data generated for a product analytics pet project.
+                Этот notebook анализирует синтетические данные интернет-магазина, созданные для pet-проекта по продуктовой аналитике.
 
-                Main goals:
+                Основные цели:
 
-                - inspect the dataset structure
-                - calculate core business metrics
-                - analyze revenue dynamics
-                - analyze the product funnel
-                - compare product categories and device types
+                - изучить структуру данных
+                - посчитать ключевые бизнес-метрики
+                - проанализировать динамику выручки
+                - разобрать продуктовую воронку
+                - сравнить категории товаров и типы устройств
                 """
             ),
             code_cell(
@@ -63,16 +63,16 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                ## 1. Load Data
+                ## 1. Загрузка данных
 
-                The project uses six main tables:
+                В проекте используется шесть основных таблиц:
 
-                - users
-                - products
-                - sessions
-                - orders
-                - order_items
-                - events
+                - `users`
+                - `products`
+                - `sessions`
+                - `orders`
+                - `order_items`
+                - `events`
                 """
             ),
             code_cell(
@@ -103,16 +103,16 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                ## 2. Overall Metrics
+                ## 2. Общие метрики
 
-                We calculate core project KPIs:
+                Считаем базовые KPI проекта:
 
-                - users
-                - sessions
-                - paid orders
-                - revenue
-                - average order value
-                - session-to-order conversion
+                - количество пользователей
+                - количество сессий
+                - количество оплаченных заказов
+                - выручка
+                - средний чек
+                - конверсия из сессии в заказ
                 """
             ),
             code_cell(
@@ -139,15 +139,15 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                **Interpretation**
+                **Интерпретация**
 
-                This table gives a high-level view of the product.
-                These KPIs are usually used as dashboard cards in BI tools.
+                Эта таблица дает верхнеуровневый срез продукта.
+                Такие KPI обычно выносят в карточки на BI-дашборде.
                 """
             ),
             markdown_cell(
                 """
-                ## 3. Monthly Revenue Dynamics
+                ## 3. Динамика выручки по месяцам
                 """
             ),
             code_cell(
@@ -171,9 +171,9 @@ def main() -> None:
                 """
                 plt.figure(figsize=(12, 6))
                 sns.lineplot(data=monthly_metrics, x="month", y="revenue", marker="o", linewidth=2.5)
-                plt.title("Monthly Revenue")
-                plt.xlabel("Month")
-                plt.ylabel("Revenue")
+                plt.title("Выручка по месяцам")
+                plt.xlabel("Месяц")
+                plt.ylabel("Выручка")
                 plt.xticks(rotation=45)
                 plt.tight_layout()
                 plt.savefig(FIGURES_DIR / "monthly_revenue.png", dpi=160)
@@ -182,17 +182,17 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                **Interpretation**
+                **Интерпретация**
 
-                Monthly revenue helps detect seasonality, growth periods, and possible drops.
-                In the current generated dataset, December 2025 is the strongest month by revenue and order count.
+                Помесячная выручка помогает находить сезонность, периоды роста и возможные просадки.
+                В текущем сгенерированном датасете декабрь 2025 - самый сильный месяц по выручке и количеству заказов.
                 """
             ),
             markdown_cell(
                 """
-                ## 4. Funnel Analysis
+                ## 4. Анализ воронки
 
-                Funnel steps:
+                Шаги воронки:
 
                 1. `view_item`
                 2. `add_to_cart`
@@ -222,9 +222,9 @@ def main() -> None:
                 """
                 plt.figure(figsize=(9, 6))
                 sns.barplot(data=funnel, x="event_type", y="users_count", hue="event_type", legend=False)
-                plt.title("User Funnel")
-                plt.xlabel("Event Type")
-                plt.ylabel("Unique Users")
+                plt.title("Пользовательская воронка")
+                plt.xlabel("Тип события")
+                plt.ylabel("Уникальные пользователи")
                 plt.tight_layout()
                 plt.savefig(FIGURES_DIR / "user_funnel.png", dpi=160)
                 plt.show()
@@ -232,15 +232,15 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                **Interpretation**
+                **Интерпретация**
 
-                The funnel shows where users drop off before purchase.
-                This is one of the core tools in product analytics.
+                Воронка показывает, на каких шагах пользователи отваливаются до покупки.
+                Это один из базовых инструментов продуктового аналитика.
                 """
             ),
             markdown_cell(
                 """
-                ## 5. Revenue by Product Category
+                ## 5. Выручка по категориям товаров
                 """
             ),
             code_cell(
@@ -260,9 +260,9 @@ def main() -> None:
                 """
                 plt.figure(figsize=(10, 6))
                 sns.barplot(data=category_revenue, x="category", y="revenue", hue="category", legend=False)
-                plt.title("Revenue by Product Category")
-                plt.xlabel("Category")
-                plt.ylabel("Revenue")
+                plt.title("Выручка по категориям")
+                plt.xlabel("Категория")
+                plt.ylabel("Выручка")
                 plt.tight_layout()
                 plt.savefig(FIGURES_DIR / "category_revenue.png", dpi=160)
                 plt.show()
@@ -270,15 +270,15 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                **Interpretation**
+                **Интерпретация**
 
-                Category analysis helps identify the main revenue drivers.
-                In the current dataset, Electronics and Home are the strongest categories by revenue.
+                Анализ категорий помогает найти основные драйверы выручки.
+                В текущем датасете категории Electronics и Home дают наибольшую выручку.
                 """
             ),
             markdown_cell(
                 """
-                ## 6. Device Conversion
+                ## 6. Конверсия по типам устройств
                 """
             ),
             code_cell(
@@ -318,9 +318,9 @@ def main() -> None:
                     hue="device_type",
                     legend=False,
                 )
-                plt.title("Session-to-Order Conversion by Device")
-                plt.xlabel("Device Type")
-                plt.ylabel("Conversion")
+                plt.title("Конверсия из сессии в заказ по устройствам")
+                plt.xlabel("Тип устройства")
+                plt.ylabel("Конверсия")
                 plt.tight_layout()
                 plt.savefig(FIGURES_DIR / "device_conversion.png", dpi=160)
                 plt.show()
@@ -328,25 +328,25 @@ def main() -> None:
             ),
             markdown_cell(
                 """
-                **Interpretation**
+                **Интерпретация**
 
-                Device analysis helps find UX or checkout problems.
-                In this dataset, desktop users convert better than mobile users.
+                Анализ устройств помогает находить UX-проблемы или проблемы в checkout.
+                В этом датасете desktop-пользователи конвертируются лучше, чем mobile-пользователи.
                 """
             ),
             markdown_cell(
                 """
-                ## 7. Final Notes
+                ## 7. Финальные заметки
 
-                This notebook covers the first EDA stage.
+                Этот notebook покрывает первый этап EDA.
 
-                Next possible steps:
+                Возможные следующие шаги:
 
-                - connect notebook directly to PostgreSQL
-                - add acquisition cost data
-                - calculate CAC, LTV, and payback
-                - build Power BI dashboard
-                - add a simple ML model for purchase probability
+                - подключить notebook напрямую к PostgreSQL
+                - добавить данные о стоимости привлечения
+                - рассчитать CAC, LTV и payback
+                - собрать дашборд в Power BI
+                - добавить простую ML-модель для вероятности покупки
                 """
             ),
         ],
@@ -371,7 +371,7 @@ def main() -> None:
     }
 
     NOTEBOOK_PATH.write_text(json.dumps(notebook, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Notebook created: {NOTEBOOK_PATH}")
+    print(f"Notebook создан: {NOTEBOOK_PATH}")
 
 
 if __name__ == "__main__":
