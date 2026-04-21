@@ -1,0 +1,4 @@
+﻿event_type,users_count,step_order,conversion_from_previous_step,conversion_from_first_step
+view_item,500,1,,1.0
+add_to_cart,385,2,0.77,0.77
+purchase,290,3,0.7532467532467533,0.58

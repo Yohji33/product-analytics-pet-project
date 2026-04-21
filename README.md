@@ -53,6 +53,7 @@
 - `sql/` - схема БД, загрузка данных и аналитические запросы
 - `notebooks/` - EDA в Python и Jupyter Notebook
 - `dashboards/figures/` - сгенерированные графики
+- `dashboards/powerbi_data/` - подготовленные CSV-файлы для Power BI
 - `docs/` - описание проекта, roadmap, настройка PostgreSQL и выводы
 - `scripts/` - скрипты генерации данных и notebook
 
@@ -141,6 +142,7 @@ SQL:
 - [Загрузка данных](sql/03_load_data.sql)
 - [Проверочные запросы](sql/04_validation_queries.sql)
 - [Продуктовый анализ](sql/05_product_analysis.sql)
+- [Views для Power BI](sql/06_powerbi_views.sql)
 
 Python:
 
@@ -151,6 +153,7 @@ Python:
 Документация:
 
 - [Итоги анализа](docs/analysis_summary.md)
+- [Инструкция по Power BI](docs/powerbi_dashboard_guide.md)
 - [Настройка PostgreSQL](docs/postgres_setup.md)
 - [Описание проекта](docs/project_scope.md)
 - [Roadmap](docs/roadmap.md)
@@ -199,9 +202,15 @@ python scripts/generate_sample_data.py
 python notebooks/eda_analysis.py
 ```
 
+Подготовить CSV-файлы для Power BI:
+
+```bash
+python scripts/export_powerbi_data.py
+```
+
 ## Следующие шаги
 
-- собрать дашборд в Power BI
+- собрать дашборд в Power BI по инструкции `docs/powerbi_dashboard_guide.md`
 - добавить скриншоты дашборда
 - добавить данные о стоимости привлечения
 - рассчитать CAC, LTV и payback period
