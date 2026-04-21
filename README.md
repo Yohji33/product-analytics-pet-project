@@ -116,6 +116,10 @@ python notebooks/eda_analysis.py
 
 The script creates charts in `dashboards/figures/`.
 
+Main notebook:
+
+- `notebooks/01_eda_analysis.ipynb`
+
 ## Next steps
 
 1. Create the database in PostgreSQL.

@@ -6,3 +6,4 @@ jupyter
 ipykernel
 psycopg2-binary
 SQLAlchemy
+pywin32
