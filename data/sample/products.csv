@@ -1,0 +1,17 @@
+product_id,product_name,category,brand,price,cost,created_at,is_active
+1,Aero Phone,Electronics,Nova,254.8,160.06,2024-01-01 10:00:00,true
+2,Atlas Laptop,Electronics,Pulse,493.57,360.39,2024-01-04 10:00:00,true
+3,Orion Headphones,Electronics,Aero,431.8,267.94,2024-01-07 10:00:00,true
+4,Nova Monitor,Electronics,Nova,344.64,233.95,2024-01-10 10:00:00,true
+5,Atlas Lamp,Home,Nova,297.81,135.25,2024-01-13 10:00:00,true
+6,Pulse Chair,Home,Aero,462.06,339.43,2024-01-16 10:00:00,true
+7,Pulse Table,Home,Pulse,150.38,99.82,2024-01-19 10:00:00,true
+8,Aero Storage Box,Home,Aero,353.89,168.0,2024-01-22 10:00:00,true
+9,Orion Sneakers,Sports,Nova,311.86,166.3,2024-01-25 10:00:00,true
+10,Atlas Backpack,Sports,Aero,260.54,133.13,2024-01-28 10:00:00,true
+11,Nova Yoga Mat,Sports,Orion,170.11,106.48,2024-01-31 10:00:00,true
+12,Atlas Bottle,Sports,Nova,352.35,235.72,2024-02-03 10:00:00,true
+13,Nova Cream,Beauty,Pulse,129.8,94.42,2024-02-06 10:00:00,true
+14,Atlas Shampoo,Beauty,Nova,310.03,144.63,2024-02-09 10:00:00,true
+15,Nova Perfume,Beauty,Atlas,16.21,7.96,2024-02-12 10:00:00,true
+16,Aero Mask,Beauty,Orion,253.24,140.3,2024-02-15 10:00:00,true

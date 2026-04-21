@@ -1,0 +1,501 @@
+user_id,signup_date,first_session_at,country,city,acquisition_channel,device_type,birth_year,gender
+1,2025-09-06,2025-09-06 07:53:23,Russia,Saint Petersburg,social,mobile,1992,male
+2,2025-10-14,2025-10-14 00:24:33,Russia,Almaty,organic,tablet,1998,male
+3,2025-01-12,2025-01-12 13:43:48,Russia,Moscow,ads,tablet,2004,male
+4,2025-08-06,2025-08-06 23:10:59,Russia,Almaty,referral,mobile,1999,female
+5,2025-11-11,2025-11-11 08:26:19,Russia,Moscow,referral,desktop,1993,male
+6,2025-03-25,2025-03-25 14:52:10,Kazakhstan,Saint Petersburg,organic,desktop,1988,female
+7,2025-11-26,2025-11-26 03:13:12,Kazakhstan,Almaty,social,mobile,1999,male
+8,2025-12-25,2025-12-25 04:24:57,Kazakhstan,Saint Petersburg,email,desktop,2005,female
+9,2025-08-13,2025-08-13 05:18:43,Russia,Saint Petersburg,organic,tablet,1992,female
+10,2025-01-31,2025-01-31 23:42:54,Russia,Saint Petersburg,referral,desktop,1999,female
+11,2025-03-05,2025-03-05 04:02:45,Kazakhstan,Kazan,ads,tablet,1993,male
+12,2025-08-25,2025-08-25 13:30:44,Belarus,Moscow,email,tablet,1992,male
+13,2025-06-29,2025-06-29 12:34:38,Kazakhstan,Kazan,email,mobile,2006,female
+14,2025-11-24,2025-11-24 07:56:57,Russia,Moscow,organic,desktop,1997,female
+15,2025-01-26,2025-01-26 16:55:21,Russia,Almaty,social,mobile,2005,female
+16,2025-06-03,2025-06-03 15:33:23,Belarus,Minsk,ads,desktop,1989,male
+17,2025-10-17,2025-10-17 07:48:02,Belarus,Almaty,social,tablet,2003,female
+18,2025-12-15,2025-12-15 16:18:56,Belarus,Minsk,social,mobile,1989,female
+19,2025-02-05,2025-02-05 07:20:13,Russia,Saint Petersburg,ads,tablet,1990,female
+20,2025-08-20,2025-08-20 14:56:06,Russia,Minsk,referral,tablet,1999,female
+21,2025-08-03,2025-08-03 20:26:20,Russia,Saint Petersburg,email,desktop,2005,female
+22,2025-02-13,2025-02-13 07:44:29,Kazakhstan,Minsk,ads,desktop,1985,female
+23,2025-07-14,2025-07-14 09:48:02,Russia,Almaty,organic,tablet,1994,male
+24,2025-03-01,2025-03-01 08:33:54,Kazakhstan,Moscow,email,tablet,1985,female
+25,2025-07-09,2025-07-09 18:08:07,Russia,Saint Petersburg,social,desktop,1992,male
+26,2025-04-04,2025-04-04 13:05:09,Belarus,Saint Petersburg,organic,tablet,2000,male
+27,2025-10-23,2025-10-23 09:19:33,Belarus,Moscow,ads,tablet,2000,male
+28,2025-04-13,2025-04-13 22:30:24,Belarus,Almaty,referral,mobile,2002,male
+29,2025-10-04,2025-10-04 21:09:57,Kazakhstan,Minsk,social,desktop,2001,female
+30,2025-02-16,2025-02-16 23:50:27,Russia,Moscow,organic,desktop,1985,male
+31,2025-08-17,2025-08-17 12:39:33,Russia,Saint Petersburg,organic,tablet,2005,male
+32,2025-03-30,2025-03-30 21:53:31,Russia,Saint Petersburg,social,mobile,2001,male
+33,2025-04-19,2025-04-19 03:35:46,Belarus,Minsk,ads,tablet,1989,female
+34,2025-04-05,2025-04-05 08:53:54,Kazakhstan,Minsk,ads,mobile,1988,female
+35,2025-05-18,2025-05-18 14:17:33,Kazakhstan,Minsk,referral,tablet,1986,male
+36,2025-01-24,2025-01-24 12:57:03,Kazakhstan,Kazan,organic,mobile,1991,male
+37,2025-07-28,2025-07-28 06:32:43,Kazakhstan,Moscow,referral,mobile,1993,female
+38,2025-04-08,2025-04-08 00:21:53,Russia,Minsk,email,mobile,1986,male
+39,2025-02-06,2025-02-06 05:16:19,Russia,Moscow,referral,desktop,2000,male
+40,2025-12-02,2025-12-02 19:07:32,Kazakhstan,Saint Petersburg,ads,desktop,1985,female
+41,2025-04-13,2025-04-13 23:52:17,Kazakhstan,Kazan,referral,tablet,2002,female
+42,2025-03-02,2025-03-02 02:48:39,Russia,Kazan,ads,mobile,2003,male
+43,2025-10-18,2025-10-18 11:38:15,Kazakhstan,Saint Petersburg,organic,tablet,2000,male
+44,2025-01-23,2025-01-23 02:09:21,Belarus,Saint Petersburg,ads,mobile,2004,male
+45,2025-09-20,2025-09-20 05:26:13,Russia,Minsk,organic,tablet,1992,male
+46,2025-08-29,2025-08-29 13:03:14,Russia,Minsk,email,tablet,2001,female
+47,2025-12-30,2025-12-30 00:05:37,Kazakhstan,Moscow,social,mobile,1993,female
+48,2025-02-20,2025-02-20 19:52:26,Belarus,Kazan,referral,desktop,1987,male
+49,2025-06-27,2025-06-27 23:31:50,Belarus,Almaty,organic,mobile,2002,male
+50,2025-07-16,2025-07-16 11:11:13,Kazakhstan,Moscow,social,mobile,1992,female
+51,2025-04-21,2025-04-21 16:16:30,Russia,Minsk,email,tablet,1994,male
+52,2025-09-17,2025-09-17 08:56:10,Belarus,Kazan,organic,mobile,1993,male
+53,2025-12-12,2025-12-12 12:43:24,Russia,Almaty,ads,desktop,1994,male
+54,2025-10-06,2025-10-06 16:37:49,Kazakhstan,Moscow,social,tablet,2000,female
+55,2025-12-18,2025-12-18 14:20:51,Russia,Saint Petersburg,referral,desktop,1986,male
+56,2025-05-10,2025-05-10 12:58:20,Russia,Kazan,ads,tablet,1999,female
+57,2025-08-06,2025-08-06 20:01:51,Russia,Saint Petersburg,organic,tablet,1989,male
+58,2025-11-21,2025-11-21 02:59:21,Kazakhstan,Almaty,email,mobile,1998,male
+59,2025-01-17,2025-01-17 05:52:23,Kazakhstan,Kazan,organic,desktop,1991,male
+60,2025-09-17,2025-09-17 00:16:11,Russia,Kazan,email,desktop,2004,male
+61,2025-12-26,2025-12-26 12:44:39,Russia,Moscow,ads,desktop,1985,male
+62,2025-10-14,2025-10-14 01:16:42,Kazakhstan,Minsk,ads,desktop,1990,male
+63,2025-05-29,2025-05-29 13:32:50,Russia,Minsk,ads,mobile,1999,female
+64,2025-04-29,2025-04-29 12:35:06,Russia,Moscow,organic,tablet,1991,female
+65,2025-05-08,2025-05-08 11:37:23,Kazakhstan,Saint Petersburg,social,desktop,2005,female
+66,2025-09-21,2025-09-21 21:34:04,Belarus,Kazan,organic,mobile,1993,male
+67,2025-08-14,2025-08-14 11:29:18,Kazakhstan,Saint Petersburg,organic,tablet,1998,female
+68,2025-10-10,2025-10-10 22:31:55,Kazakhstan,Minsk,email,tablet,1988,female
+69,2025-12-16,2025-12-16 07:59:30,Belarus,Moscow,social,mobile,1998,male
+70,2025-07-21,2025-07-21 22:00:31,Belarus,Moscow,social,desktop,1987,female
+71,2025-08-31,2025-08-31 00:13:45,Kazakhstan,Saint Petersburg,social,tablet,1994,female
+72,2025-05-07,2025-05-07 16:14:42,Kazakhstan,Kazan,email,mobile,1991,female
+73,2025-09-16,2025-09-16 05:35:29,Kazakhstan,Moscow,email,tablet,1994,female
+74,2025-08-01,2025-08-01 19:08:41,Russia,Kazan,social,mobile,1998,female
+75,2025-06-30,2025-06-30 14:00:14,Kazakhstan,Minsk,ads,tablet,2000,male
+76,2025-09-13,2025-09-13 20:56:02,Russia,Kazan,email,tablet,2005,female
+77,2025-02-06,2025-02-06 06:25:54,Russia,Kazan,ads,mobile,1989,male
+78,2025-01-18,2025-01-18 22:44:35,Russia,Minsk,email,mobile,1999,female
+79,2025-12-11,2025-12-11 03:23:40,Belarus,Almaty,ads,tablet,1997,female
+80,2025-06-05,2025-06-05 05:02:04,Russia,Moscow,organic,mobile,1998,male
+81,2025-03-10,2025-03-10 07:22:57,Belarus,Almaty,referral,mobile,2002,male
+82,2025-12-23,2025-12-23 07:26:25,Russia,Minsk,ads,desktop,2006,female
+83,2025-10-21,2025-10-21 07:26:25,Kazakhstan,Almaty,email,desktop,2002,female
+84,2025-12-15,2025-12-15 10:35:08,Russia,Minsk,referral,desktop,1992,female
+85,2025-10-25,2025-10-25 09:54:03,Belarus,Minsk,ads,desktop,1999,male
+86,2025-10-05,2025-10-05 02:43:12,Kazakhstan,Moscow,social,desktop,1995,male
+87,2025-02-23,2025-02-23 17:44:23,Russia,Moscow,referral,tablet,1989,male
+88,2025-01-25,2025-01-25 22:39:22,Kazakhstan,Minsk,social,tablet,1999,female
+89,2025-01-25,2025-01-25 04:21:30,Russia,Minsk,referral,tablet,1985,female
+90,2025-07-05,2025-07-05 05:46:24,Russia,Kazan,social,desktop,1998,male
+91,2025-07-09,2025-07-09 14:37:42,Russia,Kazan,referral,desktop,1985,female
+92,2025-05-11,2025-05-11 12:57:15,Belarus,Minsk,ads,desktop,1989,male
+93,2025-12-19,2025-12-19 05:11:22,Kazakhstan,Almaty,email,tablet,1985,male
+94,2025-09-07,2025-09-07 14:51:39,Kazakhstan,Moscow,referral,mobile,1986,female
+95,2025-05-28,2025-05-28 05:30:14,Kazakhstan,Moscow,referral,desktop,1995,female
+96,2025-04-19,2025-04-19 01:32:22,Kazakhstan,Kazan,organic,desktop,1985,male
+97,2025-05-16,2025-05-16 21:52:00,Russia,Saint Petersburg,organic,mobile,1992,male
+98,2025-11-22,2025-11-22 22:10:47,Russia,Almaty,ads,mobile,1989,female
+99,2025-09-17,2025-09-17 23:48:31,Russia,Almaty,ads,desktop,1993,female
+100,2025-03-07,2025-03-07 03:54:29,Belarus,Almaty,organic,mobile,1994,male
+101,2025-08-13,2025-08-13 17:43:57,Russia,Kazan,email,tablet,1997,female
+102,2025-10-05,2025-10-05 16:25:12,Russia,Saint Petersburg,email,tablet,2005,male
+103,2025-02-09,2025-02-09 13:47:20,Belarus,Kazan,email,mobile,2003,male
+104,2025-05-15,2025-05-15 20:10:25,Belarus,Minsk,social,mobile,2001,female
+105,2025-01-05,2025-01-05 21:55:35,Kazakhstan,Minsk,organic,desktop,1996,female
+106,2025-10-02,2025-10-02 16:35:39,Russia,Minsk,ads,tablet,2001,female
+107,2025-08-28,2025-08-28 04:43:09,Belarus,Minsk,referral,desktop,2003,female
+108,2025-05-06,2025-05-06 04:05:47,Russia,Saint Petersburg,social,desktop,1992,female
+109,2025-08-10,2025-08-10 07:23:01,Belarus,Minsk,social,mobile,2000,female
+110,2025-03-12,2025-03-12 14:52:13,Kazakhstan,Moscow,social,desktop,1995,female
+111,2025-12-08,2025-12-08 21:10:36,Belarus,Kazan,email,mobile,2001,male
+112,2025-02-03,2025-02-03 05:58:14,Russia,Minsk,referral,tablet,1992,female
+113,2025-09-08,2025-09-08 20:15:04,Belarus,Minsk,referral,mobile,1987,female
+114,2025-03-28,2025-03-28 01:25:41,Kazakhstan,Moscow,social,tablet,2003,female
+115,2025-07-03,2025-07-03 19:06:26,Belarus,Almaty,social,desktop,2002,female
+116,2025-05-17,2025-05-17 15:06:42,Belarus,Minsk,social,desktop,1993,male
+117,2025-02-16,2025-02-16 20:35:39,Belarus,Moscow,social,mobile,2002,male
+118,2025-03-16,2025-03-16 09:17:28,Russia,Minsk,social,tablet,2003,female
+119,2025-02-09,2025-02-09 00:58:16,Russia,Kazan,ads,desktop,1990,female
+120,2025-01-06,2025-01-06 11:52:20,Belarus,Almaty,ads,desktop,1986,male
+121,2025-08-03,2025-08-03 21:40:45,Kazakhstan,Moscow,referral,mobile,1985,female
+122,2025-07-02,2025-07-02 07:05:47,Kazakhstan,Minsk,social,mobile,1986,female
+123,2025-12-01,2025-12-01 15:50:24,Kazakhstan,Saint Petersburg,organic,desktop,2000,male
+124,2025-08-13,2025-08-13 02:13:37,Belarus,Saint Petersburg,ads,mobile,2003,female
+125,2025-02-03,2025-02-03 01:56:36,Russia,Saint Petersburg,email,desktop,2004,male
+126,2025-10-29,2025-10-29 05:59:16,Belarus,Minsk,referral,desktop,1994,female
+127,2025-04-29,2025-04-29 14:21:00,Belarus,Almaty,organic,tablet,1988,male
+128,2025-08-31,2025-08-31 22:13:21,Russia,Kazan,organic,mobile,1992,male
+129,2025-08-03,2025-08-03 08:56:26,Russia,Moscow,organic,desktop,1999,female
+130,2025-04-24,2025-04-24 02:44:00,Russia,Moscow,social,tablet,1994,female
+131,2025-01-28,2025-01-28 15:26:36,Belarus,Moscow,social,tablet,2003,male
+132,2025-06-15,2025-06-15 02:34:56,Russia,Almaty,ads,tablet,1989,female
+133,2025-11-18,2025-11-18 00:45:39,Russia,Saint Petersburg,organic,mobile,1994,female
+134,2025-06-20,2025-06-20 13:12:24,Russia,Minsk,social,tablet,1997,female
+135,2025-07-14,2025-07-14 08:44:19,Belarus,Minsk,referral,mobile,2004,male
+136,2025-12-12,2025-12-12 10:01:19,Kazakhstan,Kazan,email,desktop,1985,male
+137,2025-03-30,2025-03-30 21:43:48,Belarus,Almaty,email,mobile,2006,female
+138,2025-08-12,2025-08-12 19:00:40,Russia,Moscow,referral,tablet,2005,female
+139,2025-12-22,2025-12-22 18:25:02,Kazakhstan,Moscow,email,desktop,2005,female
+140,2025-02-05,2025-02-05 10:26:27,Kazakhstan,Kazan,referral,desktop,1995,male
+141,2025-11-30,2025-11-30 02:39:06,Russia,Kazan,referral,tablet,2000,female
+142,2025-09-15,2025-09-15 07:43:34,Kazakhstan,Almaty,organic,desktop,1987,female
+143,2025-04-09,2025-04-09 00:31:40,Kazakhstan,Saint Petersburg,referral,tablet,1985,female
+144,2025-06-10,2025-06-10 11:44:47,Russia,Moscow,email,desktop,2004,female
+145,2025-08-31,2025-08-31 21:13:55,Kazakhstan,Saint Petersburg,ads,desktop,2002,male
+146,2025-12-27,2025-12-27 06:32:12,Kazakhstan,Minsk,referral,mobile,1985,male
+147,2025-10-03,2025-10-03 15:39:19,Russia,Kazan,email,mobile,2002,female
+148,2025-02-06,2025-02-06 04:46:21,Russia,Saint Petersburg,referral,mobile,2005,male
+149,2025-07-13,2025-07-13 13:11:46,Belarus,Kazan,email,tablet,1993,female
+150,2025-11-21,2025-11-21 04:11:27,Kazakhstan,Minsk,ads,desktop,2002,male
+151,2025-05-29,2025-05-29 23:16:50,Russia,Almaty,email,tablet,1989,male
+152,2025-04-18,2025-04-18 06:48:44,Kazakhstan,Kazan,email,desktop,1985,female
+153,2025-10-09,2025-10-09 23:17:08,Kazakhstan,Almaty,email,tablet,2000,male
+154,2025-06-23,2025-06-23 10:07:24,Belarus,Minsk,social,desktop,2002,female
+155,2025-06-26,2025-06-26 20:07:09,Kazakhstan,Moscow,ads,tablet,1997,male
+156,2025-11-29,2025-11-29 10:37:09,Kazakhstan,Saint Petersburg,social,tablet,2000,female
+157,2025-05-30,2025-05-30 22:30:53,Belarus,Moscow,referral,mobile,1989,female
+158,2025-12-04,2025-12-04 18:11:40,Russia,Minsk,organic,tablet,1999,male
+159,2025-10-08,2025-10-08 13:39:52,Russia,Minsk,ads,mobile,2000,female
+160,2025-05-12,2025-05-12 11:37:09,Belarus,Minsk,organic,desktop,2006,female
+161,2025-05-03,2025-05-03 23:29:45,Belarus,Minsk,email,mobile,2004,male
+162,2025-04-02,2025-04-02 04:13:02,Belarus,Kazan,ads,tablet,1987,female
+163,2025-02-08,2025-02-08 05:33:23,Belarus,Saint Petersburg,referral,mobile,1994,male
+164,2025-01-18,2025-01-18 20:40:00,Kazakhstan,Saint Petersburg,social,desktop,1996,female
+165,2025-02-26,2025-02-26 12:48:31,Russia,Almaty,referral,tablet,2006,male
+166,2025-03-08,2025-03-08 00:21:44,Russia,Saint Petersburg,email,desktop,2004,male
+167,2025-07-13,2025-07-13 06:35:41,Belarus,Moscow,ads,desktop,2005,female
+168,2025-06-28,2025-06-28 11:30:27,Kazakhstan,Saint Petersburg,referral,desktop,2006,male
+169,2025-01-29,2025-01-29 16:26:34,Kazakhstan,Kazan,email,desktop,2005,female
+170,2025-09-26,2025-09-26 02:11:17,Kazakhstan,Minsk,social,mobile,1997,female
+171,2025-02-11,2025-02-11 10:04:49,Russia,Minsk,email,desktop,2003,female
+172,2025-09-29,2025-09-29 13:45:12,Kazakhstan,Saint Petersburg,referral,desktop,1985,male
+173,2025-12-20,2025-12-20 15:33:54,Belarus,Minsk,social,mobile,2004,female
+174,2025-03-27,2025-03-27 01:16:12,Belarus,Moscow,email,desktop,2006,male
+175,2025-09-01,2025-09-01 23:41:48,Russia,Saint Petersburg,social,desktop,1986,female
+176,2025-10-12,2025-10-12 10:05:16,Russia,Saint Petersburg,social,desktop,1998,male
+177,2025-03-19,2025-03-19 23:32:35,Russia,Almaty,social,tablet,2001,female
+178,2025-11-19,2025-11-19 12:33:57,Russia,Kazan,referral,desktop,1995,male
+179,2025-07-01,2025-07-01 21:09:53,Russia,Moscow,ads,tablet,2006,female
+180,2025-11-25,2025-11-25 10:54:35,Belarus,Kazan,organic,desktop,1985,female
+181,2025-07-28,2025-07-28 09:12:59,Russia,Minsk,social,tablet,2006,female
+182,2025-08-16,2025-08-16 00:29:41,Kazakhstan,Kazan,organic,tablet,1992,female
+183,2025-01-10,2025-01-10 17:14:47,Belarus,Almaty,social,tablet,1992,male
+184,2025-09-04,2025-09-04 18:23:37,Kazakhstan,Kazan,referral,mobile,1989,male
+185,2025-01-15,2025-01-15 10:50:31,Kazakhstan,Minsk,organic,mobile,1992,male
+186,2025-05-31,2025-05-31 22:26:30,Kazakhstan,Kazan,email,desktop,2003,male
+187,2025-12-10,2025-12-10 20:39:16,Kazakhstan,Saint Petersburg,referral,tablet,1998,female
+188,2025-01-13,2025-01-13 16:56:16,Belarus,Kazan,ads,desktop,1999,male
+189,2025-11-29,2025-11-29 05:22:25,Kazakhstan,Saint Petersburg,social,tablet,2005,female
+190,2025-01-24,2025-01-24 12:22:03,Kazakhstan,Kazan,ads,mobile,1999,male
+191,2025-09-15,2025-09-15 09:27:08,Russia,Almaty,organic,mobile,1995,male
+192,2025-02-18,2025-02-18 21:41:44,Belarus,Moscow,organic,tablet,1991,male
+193,2025-11-12,2025-11-12 18:12:10,Russia,Kazan,ads,tablet,1985,female
+194,2025-11-30,2025-11-30 08:55:29,Russia,Moscow,email,desktop,1990,male
+195,2025-09-14,2025-09-14 17:30:13,Russia,Moscow,organic,desktop,1992,female
+196,2025-01-07,2025-01-07 03:05:25,Russia,Kazan,organic,mobile,1998,male
+197,2025-10-17,2025-10-17 14:06:14,Russia,Minsk,referral,desktop,2001,male
+198,2025-06-25,2025-06-25 12:59:45,Belarus,Moscow,email,mobile,2006,female
+199,2025-06-27,2025-06-27 21:15:56,Belarus,Saint Petersburg,organic,desktop,1997,female
+200,2025-09-24,2025-09-24 10:53:31,Russia,Minsk,referral,mobile,1987,female
+201,2025-08-25,2025-08-25 05:44:34,Russia,Saint Petersburg,ads,desktop,2004,female
+202,2025-05-28,2025-05-28 22:17:10,Belarus,Almaty,social,desktop,2001,female
+203,2025-02-08,2025-02-08 12:24:36,Belarus,Saint Petersburg,email,tablet,1991,female
+204,2025-06-25,2025-06-25 08:47:48,Russia,Minsk,social,desktop,1997,female
+205,2025-10-11,2025-10-11 08:28:53,Russia,Kazan,referral,desktop,2006,female
+206,2025-05-26,2025-05-26 08:44:18,Russia,Minsk,organic,mobile,1987,male
+207,2025-06-17,2025-06-17 17:22:51,Russia,Kazan,ads,tablet,1986,female
+208,2025-09-18,2025-09-18 04:58:34,Russia,Minsk,social,tablet,1998,male
+209,2025-04-22,2025-04-22 16:54:01,Belarus,Kazan,social,mobile,2003,male
+210,2025-03-02,2025-03-02 02:11:23,Belarus,Minsk,ads,mobile,1996,female
+211,2025-02-14,2025-02-14 14:48:31,Kazakhstan,Almaty,ads,desktop,2002,male
+212,2025-08-25,2025-08-25 12:14:38,Belarus,Kazan,organic,mobile,1993,female
+213,2025-12-24,2025-12-24 21:21:08,Kazakhstan,Kazan,organic,mobile,1989,female
+214,2025-01-28,2025-01-28 00:34:59,Russia,Saint Petersburg,organic,tablet,2001,male
+215,2025-05-27,2025-05-27 02:23:09,Kazakhstan,Minsk,social,mobile,1996,female
+216,2025-10-08,2025-10-08 05:45:42,Kazakhstan,Almaty,email,mobile,1986,male
+217,2025-03-03,2025-03-03 03:09:59,Belarus,Saint Petersburg,organic,desktop,1999,female
+218,2025-07-08,2025-07-08 14:41:42,Belarus,Minsk,referral,desktop,1991,male
+219,2025-05-15,2025-05-15 01:14:39,Kazakhstan,Saint Petersburg,social,tablet,2006,female
+220,2025-07-24,2025-07-24 15:22:54,Belarus,Kazan,organic,mobile,1997,male
+221,2025-01-03,2025-01-03 23:38:55,Russia,Kazan,ads,mobile,1993,female
+222,2025-05-08,2025-05-08 10:19:19,Russia,Saint Petersburg,referral,tablet,1998,male
+223,2025-02-20,2025-02-20 04:05:52,Kazakhstan,Almaty,ads,tablet,2002,female
+224,2025-01-28,2025-01-28 23:47:32,Kazakhstan,Saint Petersburg,referral,mobile,1999,male
+225,2025-12-01,2025-12-01 19:26:51,Kazakhstan,Almaty,referral,tablet,1997,female
+226,2025-04-23,2025-04-23 10:28:38,Russia,Minsk,organic,desktop,1990,female
+227,2025-11-20,2025-11-20 03:02:36,Belarus,Kazan,organic,desktop,1988,male
+228,2025-06-19,2025-06-19 04:47:58,Belarus,Minsk,email,mobile,1997,female
+229,2025-10-17,2025-10-17 15:24:17,Kazakhstan,Moscow,social,mobile,1987,male
+230,2025-07-26,2025-07-26 01:35:43,Belarus,Moscow,social,desktop,2005,male
+231,2025-04-02,2025-04-02 18:11:07,Russia,Moscow,social,mobile,1990,male
+232,2025-10-23,2025-10-23 05:43:12,Belarus,Saint Petersburg,ads,tablet,2000,female
+233,2025-10-20,2025-10-20 23:56:41,Belarus,Almaty,referral,tablet,2003,female
+234,2025-12-02,2025-12-02 15:21:52,Belarus,Kazan,ads,desktop,1987,female
+235,2025-06-21,2025-06-21 17:40:40,Belarus,Kazan,social,tablet,1986,female
+236,2025-07-17,2025-07-17 00:43:21,Russia,Kazan,referral,desktop,1986,male
+237,2025-05-24,2025-05-24 04:53:00,Kazakhstan,Saint Petersburg,organic,tablet,2004,female
+238,2025-06-29,2025-06-29 16:47:06,Belarus,Almaty,organic,desktop,2003,male
+239,2025-05-05,2025-05-05 20:50:47,Belarus,Minsk,email,mobile,1986,female
+240,2025-02-10,2025-02-10 04:42:26,Kazakhstan,Saint Petersburg,email,tablet,1990,male
+241,2025-04-07,2025-04-07 05:08:19,Belarus,Minsk,referral,tablet,2001,male
+242,2025-05-22,2025-05-22 07:46:29,Kazakhstan,Kazan,referral,desktop,1995,male
+243,2025-11-03,2025-11-03 12:07:41,Belarus,Kazan,organic,desktop,1988,female
+244,2025-04-21,2025-04-21 08:26:30,Kazakhstan,Almaty,ads,desktop,1987,male
+245,2025-12-23,2025-12-23 00:41:46,Kazakhstan,Kazan,referral,mobile,2004,male
+246,2025-05-01,2025-05-01 05:30:44,Belarus,Minsk,social,mobile,2006,male
+247,2025-09-08,2025-09-08 21:23:15,Belarus,Minsk,email,desktop,1985,female
+248,2025-04-30,2025-04-30 22:50:25,Russia,Moscow,social,desktop,1991,male
+249,2025-02-23,2025-02-23 10:12:07,Russia,Saint Petersburg,social,mobile,2001,male
+250,2025-09-15,2025-09-15 01:37:39,Kazakhstan,Almaty,ads,tablet,1997,male
+251,2025-03-05,2025-03-05 00:15:13,Russia,Almaty,ads,tablet,1999,male
+252,2025-06-09,2025-06-09 13:28:47,Kazakhstan,Moscow,referral,tablet,1994,female
+253,2025-04-01,2025-04-01 21:03:55,Belarus,Moscow,social,desktop,1991,female
+254,2025-09-21,2025-09-21 10:16:40,Belarus,Minsk,referral,desktop,1997,female
+255,2025-03-04,2025-03-04 22:29:29,Russia,Almaty,ads,desktop,1986,female
+256,2025-12-06,2025-12-06 11:21:37,Kazakhstan,Almaty,organic,tablet,2001,male
+257,2025-04-21,2025-04-21 16:58:47,Russia,Moscow,social,desktop,2001,male
+258,2025-11-19,2025-11-19 17:55:00,Kazakhstan,Saint Petersburg,ads,desktop,1996,male
+259,2025-06-11,2025-06-11 03:07:10,Russia,Minsk,email,desktop,1992,female
+260,2025-02-01,2025-02-01 16:37:04,Kazakhstan,Moscow,organic,desktop,1988,female
+261,2025-11-04,2025-11-04 08:12:07,Russia,Moscow,organic,desktop,2000,male
+262,2025-10-22,2025-10-22 16:54:43,Belarus,Minsk,referral,tablet,1985,male
+263,2025-01-08,2025-01-08 09:07:44,Kazakhstan,Moscow,ads,tablet,2004,female
+264,2025-02-13,2025-02-13 04:20:11,Kazakhstan,Moscow,social,mobile,1986,male
+265,2025-06-13,2025-06-13 01:03:27,Belarus,Almaty,referral,mobile,1988,female
+266,2025-08-20,2025-08-20 18:00:39,Belarus,Saint Petersburg,email,tablet,1992,male
+267,2025-04-24,2025-04-24 02:51:06,Kazakhstan,Saint Petersburg,email,desktop,1992,female
+268,2025-03-14,2025-03-14 17:53:31,Belarus,Saint Petersburg,email,desktop,1987,male
+269,2025-06-01,2025-06-01 15:17:33,Kazakhstan,Saint Petersburg,referral,desktop,1993,male
+270,2025-05-19,2025-05-19 16:21:22,Russia,Kazan,ads,tablet,2006,male
+271,2025-10-27,2025-10-27 14:54:50,Belarus,Kazan,ads,mobile,1996,female
+272,2025-11-12,2025-11-12 22:27:07,Belarus,Moscow,referral,tablet,2000,male
+273,2025-11-12,2025-11-12 03:42:23,Russia,Saint Petersburg,referral,mobile,1994,male
+274,2025-01-18,2025-01-18 00:18:14,Russia,Saint Petersburg,social,desktop,2001,female
+275,2025-11-13,2025-11-13 16:08:07,Belarus,Minsk,social,mobile,2005,male
+276,2025-04-22,2025-04-22 02:44:48,Kazakhstan,Saint Petersburg,social,desktop,1988,female
+277,2025-06-19,2025-06-19 16:40:55,Kazakhstan,Minsk,referral,desktop,1990,female
+278,2025-09-26,2025-09-26 18:32:45,Kazakhstan,Kazan,email,desktop,1987,female
+279,2025-01-31,2025-01-31 15:39:10,Kazakhstan,Almaty,ads,tablet,1994,female
+280,2025-02-09,2025-02-09 20:16:54,Russia,Kazan,social,desktop,1999,female
+281,2025-03-06,2025-03-06 17:14:30,Belarus,Minsk,social,desktop,1986,female
+282,2025-08-27,2025-08-27 18:49:52,Kazakhstan,Kazan,organic,mobile,2006,female
+283,2025-05-22,2025-05-22 02:18:18,Belarus,Moscow,organic,mobile,2004,female
+284,2025-01-14,2025-01-14 12:20:59,Russia,Saint Petersburg,ads,tablet,1996,female
+285,2025-05-29,2025-05-29 16:27:41,Belarus,Saint Petersburg,email,mobile,2006,female
+286,2025-05-25,2025-05-25 01:38:23,Kazakhstan,Minsk,organic,tablet,1989,female
+287,2025-06-04,2025-06-04 13:56:46,Kazakhstan,Kazan,ads,mobile,1985,male
+288,2025-07-13,2025-07-13 19:25:36,Belarus,Minsk,email,mobile,1993,female
+289,2025-10-01,2025-10-01 10:06:28,Kazakhstan,Moscow,email,desktop,2000,male
+290,2025-02-17,2025-02-17 15:03:49,Russia,Saint Petersburg,referral,mobile,1999,male
+291,2025-11-11,2025-11-11 18:31:50,Belarus,Kazan,social,tablet,1987,female
+292,2025-12-13,2025-12-13 03:48:48,Kazakhstan,Moscow,ads,desktop,2001,male
+293,2025-02-17,2025-02-17 03:10:48,Russia,Moscow,ads,desktop,1985,female
+294,2025-08-04,2025-08-04 03:51:14,Belarus,Kazan,referral,tablet,1989,male
+295,2025-01-26,2025-01-26 12:49:00,Kazakhstan,Minsk,referral,tablet,1998,female
+296,2025-11-16,2025-11-16 18:04:45,Belarus,Saint Petersburg,ads,desktop,2005,male
+297,2025-06-24,2025-06-24 18:03:58,Kazakhstan,Almaty,social,mobile,2002,male
+298,2025-10-26,2025-10-26 04:14:36,Russia,Minsk,email,mobile,1988,male
+299,2025-04-29,2025-04-29 02:38:46,Russia,Moscow,social,tablet,1992,female
+300,2025-07-21,2025-07-21 12:28:40,Kazakhstan,Saint Petersburg,social,mobile,2005,female
+301,2025-02-18,2025-02-18 14:40:18,Belarus,Kazan,email,tablet,1987,male
+302,2025-08-18,2025-08-18 20:03:16,Belarus,Moscow,ads,tablet,2004,female
+303,2025-11-24,2025-11-24 04:56:55,Belarus,Saint Petersburg,organic,mobile,1986,female
+304,2025-09-10,2025-09-10 20:58:16,Russia,Almaty,referral,tablet,2005,male
+305,2025-07-13,2025-07-13 10:03:04,Belarus,Almaty,social,tablet,1994,female
+306,2025-04-06,2025-04-06 02:25:39,Belarus,Minsk,social,desktop,1987,male
+307,2025-03-03,2025-03-03 09:24:59,Kazakhstan,Minsk,referral,desktop,1991,female
+308,2025-08-24,2025-08-24 14:29:00,Russia,Kazan,social,tablet,1996,female
+309,2025-02-20,2025-02-20 18:49:43,Kazakhstan,Almaty,email,mobile,1995,male
+310,2025-07-01,2025-07-01 03:50:22,Russia,Kazan,referral,mobile,1989,male
+311,2025-01-20,2025-01-20 15:40:31,Kazakhstan,Minsk,email,desktop,1992,male
+312,2025-11-12,2025-11-12 22:09:47,Kazakhstan,Almaty,social,mobile,1990,female
+313,2025-07-19,2025-07-19 21:34:59,Kazakhstan,Minsk,social,desktop,1985,male
+314,2025-06-02,2025-06-02 17:16:58,Belarus,Minsk,ads,mobile,2003,female
+315,2025-01-19,2025-01-19 21:31:36,Russia,Kazan,referral,tablet,2005,female
+316,2025-04-21,2025-04-21 23:22:04,Belarus,Saint Petersburg,organic,desktop,1989,female
+317,2025-10-10,2025-10-10 12:51:59,Kazakhstan,Minsk,social,mobile,1997,male
+318,2025-08-10,2025-08-10 11:24:36,Belarus,Moscow,social,tablet,1994,male
+319,2025-05-31,2025-05-31 01:01:55,Belarus,Minsk,email,desktop,2004,male
+320,2025-02-19,2025-02-19 23:13:46,Russia,Minsk,social,desktop,2002,female
+321,2025-10-21,2025-10-21 04:47:07,Russia,Moscow,email,tablet,1997,male
+322,2025-01-18,2025-01-18 14:15:28,Russia,Moscow,social,desktop,2001,female
+323,2025-02-27,2025-02-27 20:13:39,Belarus,Almaty,ads,desktop,2004,female
+324,2025-03-05,2025-03-05 02:37:43,Kazakhstan,Almaty,social,tablet,1995,female
+325,2025-10-03,2025-10-03 05:56:01,Belarus,Kazan,referral,mobile,1996,female
+326,2025-09-19,2025-09-19 16:19:50,Russia,Minsk,email,desktop,2005,male
+327,2025-08-20,2025-08-20 19:36:03,Kazakhstan,Kazan,email,tablet,1992,male
+328,2025-08-15,2025-08-15 14:49:52,Kazakhstan,Moscow,email,tablet,2004,female
+329,2025-02-27,2025-02-27 09:22:09,Belarus,Moscow,organic,tablet,1988,male
+330,2025-01-08,2025-01-08 08:30:32,Kazakhstan,Kazan,referral,mobile,1998,male
+331,2025-06-09,2025-06-09 08:59:40,Belarus,Almaty,referral,tablet,1986,male
+332,2025-07-21,2025-07-21 10:28:40,Russia,Almaty,social,tablet,2000,female
+333,2025-05-02,2025-05-02 20:23:10,Russia,Minsk,email,desktop,2002,female
+334,2025-09-20,2025-09-20 11:33:06,Belarus,Kazan,email,desktop,1991,male
+335,2025-04-19,2025-04-19 08:31:41,Belarus,Kazan,ads,desktop,1994,male
+336,2025-09-26,2025-09-26 01:30:08,Belarus,Minsk,social,desktop,1996,female
+337,2025-04-22,2025-04-22 18:23:29,Russia,Almaty,email,desktop,1997,female
+338,2025-10-28,2025-10-28 05:28:54,Russia,Kazan,organic,desktop,1987,female
+339,2025-12-25,2025-12-25 20:23:38,Kazakhstan,Kazan,referral,mobile,1991,female
+340,2025-12-29,2025-12-29 08:24:48,Belarus,Kazan,ads,mobile,2004,male
+341,2025-04-05,2025-04-05 03:52:21,Russia,Almaty,ads,tablet,1992,male
+342,2025-02-08,2025-02-08 21:54:45,Kazakhstan,Kazan,referral,mobile,2006,male
+343,2025-01-03,2025-01-03 00:17:40,Belarus,Moscow,referral,tablet,2000,female
+344,2025-09-10,2025-09-10 15:27:36,Russia,Kazan,social,desktop,2005,male
+345,2025-12-19,2025-12-19 14:35:08,Russia,Almaty,ads,tablet,1986,male
+346,2025-06-12,2025-06-12 06:58:13,Russia,Saint Petersburg,referral,desktop,1990,female
+347,2025-12-07,2025-12-07 11:50:19,Russia,Saint Petersburg,social,tablet,2004,male
+348,2025-12-27,2025-12-27 13:49:34,Kazakhstan,Kazan,referral,tablet,2002,female
+349,2025-12-12,2025-12-12 08:30:12,Russia,Almaty,referral,desktop,1991,male
+350,2025-05-09,2025-05-09 10:11:57,Russia,Minsk,social,tablet,1990,male
+351,2025-10-14,2025-10-14 01:46:35,Kazakhstan,Kazan,email,tablet,1991,male
+352,2025-08-26,2025-08-26 06:30:31,Belarus,Minsk,referral,tablet,1995,male
+353,2025-06-05,2025-06-05 16:02:11,Belarus,Saint Petersburg,ads,mobile,2000,female
+354,2025-12-30,2025-12-30 10:31:29,Russia,Saint Petersburg,social,desktop,1992,female
+355,2025-10-20,2025-10-20 17:31:16,Kazakhstan,Kazan,social,tablet,2003,male
+356,2025-04-12,2025-04-12 13:51:07,Belarus,Kazan,ads,mobile,2006,male
+357,2025-06-30,2025-06-30 17:47:44,Kazakhstan,Moscow,referral,tablet,2001,female
+358,2025-09-26,2025-09-26 01:58:21,Russia,Kazan,social,tablet,1992,male
+359,2025-02-21,2025-02-21 20:57:04,Kazakhstan,Moscow,referral,tablet,2004,female
+360,2025-06-11,2025-06-11 11:57:43,Belarus,Almaty,referral,tablet,2006,male
+361,2025-10-23,2025-10-23 21:02:46,Russia,Almaty,organic,tablet,1999,female
+362,2025-01-31,2025-01-31 07:58:12,Belarus,Saint Petersburg,organic,tablet,2001,male
+363,2025-08-11,2025-08-11 09:57:59,Belarus,Moscow,ads,desktop,2001,female
+364,2025-02-15,2025-02-15 03:26:07,Belarus,Moscow,email,desktop,1987,female
+365,2025-11-11,2025-11-11 01:33:23,Russia,Minsk,ads,tablet,1998,female
+366,2025-08-08,2025-08-08 00:01:59,Russia,Almaty,referral,tablet,1994,male
+367,2025-06-03,2025-06-03 18:30:34,Kazakhstan,Saint Petersburg,ads,tablet,1987,male
+368,2025-06-14,2025-06-14 13:08:45,Kazakhstan,Saint Petersburg,email,mobile,1987,female
+369,2025-01-13,2025-01-13 07:47:25,Kazakhstan,Minsk,ads,mobile,2005,female
+370,2025-05-26,2025-05-26 10:13:43,Kazakhstan,Minsk,referral,desktop,1987,male
+371,2025-09-11,2025-09-11 19:22:45,Kazakhstan,Saint Petersburg,ads,tablet,1997,male
+372,2025-10-10,2025-10-10 16:07:46,Russia,Saint Petersburg,organic,desktop,1999,female
+373,2025-07-26,2025-07-26 13:58:50,Kazakhstan,Moscow,ads,desktop,1996,male
+374,2025-04-18,2025-04-18 01:14:30,Russia,Saint Petersburg,organic,tablet,1998,male
+375,2025-04-04,2025-04-04 11:10:20,Russia,Saint Petersburg,organic,tablet,1986,female
+376,2025-08-21,2025-08-21 03:45:32,Belarus,Saint Petersburg,ads,tablet,1986,female
+377,2025-06-20,2025-06-20 11:25:47,Russia,Almaty,ads,mobile,1989,female
+378,2025-04-01,2025-04-01 22:32:36,Belarus,Almaty,social,tablet,2004,female
+379,2025-04-03,2025-04-03 00:06:20,Kazakhstan,Moscow,email,mobile,1998,female
+380,2025-04-17,2025-04-17 20:37:13,Russia,Almaty,email,tablet,1990,female
+381,2025-08-04,2025-08-04 20:54:13,Kazakhstan,Saint Petersburg,social,tablet,2006,female
+382,2025-11-02,2025-11-02 04:13:46,Belarus,Kazan,referral,desktop,1989,female
+383,2025-05-27,2025-05-27 04:51:47,Russia,Almaty,referral,mobile,1992,female
+384,2025-11-30,2025-11-30 00:51:49,Belarus,Moscow,referral,mobile,2002,female
+385,2025-06-11,2025-06-11 18:08:04,Belarus,Almaty,ads,desktop,1992,female
+386,2025-03-20,2025-03-20 23:14:08,Kazakhstan,Saint Petersburg,referral,desktop,1987,male
+387,2025-01-21,2025-01-21 00:21:22,Kazakhstan,Minsk,email,tablet,1986,male
+388,2025-03-15,2025-03-15 01:48:32,Belarus,Almaty,ads,desktop,1991,female
+389,2025-04-28,2025-04-28 17:55:01,Russia,Moscow,ads,tablet,1988,female
+390,2025-12-22,2025-12-22 03:12:38,Russia,Almaty,ads,desktop,1992,female
+391,2025-10-29,2025-10-29 04:18:47,Kazakhstan,Minsk,referral,tablet,2005,female
+392,2025-04-30,2025-04-30 18:42:14,Kazakhstan,Kazan,email,desktop,1999,male
+393,2025-11-08,2025-11-08 18:47:35,Belarus,Minsk,social,mobile,1996,female
+394,2025-06-10,2025-06-10 18:06:31,Russia,Almaty,ads,tablet,1989,male
+395,2025-04-12,2025-04-12 06:35:27,Belarus,Almaty,email,tablet,1998,female
+396,2025-03-01,2025-03-01 04:34:38,Russia,Kazan,ads,desktop,2003,male
+397,2025-07-13,2025-07-13 21:49:37,Belarus,Kazan,social,desktop,2005,female
+398,2025-06-28,2025-06-28 23:14:15,Russia,Kazan,ads,mobile,2002,female
+399,2025-03-13,2025-03-13 11:26:58,Belarus,Saint Petersburg,email,mobile,1987,male
+400,2025-10-24,2025-10-24 20:09:15,Russia,Minsk,ads,tablet,1992,male
+401,2025-10-02,2025-10-02 15:17:53,Russia,Saint Petersburg,ads,tablet,1999,female
+402,2025-01-24,2025-01-24 11:26:09,Belarus,Almaty,referral,tablet,2000,male
+403,2025-01-03,2025-01-03 13:37:53,Belarus,Almaty,referral,mobile,1985,female
+404,2025-07-28,2025-07-28 01:26:27,Kazakhstan,Saint Petersburg,email,tablet,2006,female
+405,2025-11-10,2025-11-10 02:01:39,Russia,Saint Petersburg,organic,tablet,1989,male
+406,2025-03-16,2025-03-16 12:56:11,Belarus,Almaty,social,desktop,1993,female
+407,2025-01-31,2025-01-31 16:30:45,Kazakhstan,Minsk,referral,tablet,1992,male
+408,2025-04-27,2025-04-27 11:57:58,Belarus,Saint Petersburg,organic,mobile,1997,female
+409,2025-05-27,2025-05-27 11:28:30,Belarus,Minsk,organic,tablet,1985,male
+410,2025-02-02,2025-02-02 02:41:25,Kazakhstan,Minsk,social,tablet,1988,male
+411,2025-03-31,2025-03-31 05:34:44,Russia,Almaty,referral,desktop,1986,male
+412,2025-09-23,2025-09-23 19:20:17,Kazakhstan,Almaty,email,tablet,1986,male
+413,2025-12-27,2025-12-27 16:43:47,Kazakhstan,Saint Petersburg,ads,tablet,1989,female
+414,2025-12-27,2025-12-27 17:44:31,Russia,Kazan,ads,tablet,1992,female
+415,2025-09-20,2025-09-20 22:25:23,Belarus,Kazan,referral,tablet,1989,male
+416,2025-07-14,2025-07-14 11:43:39,Belarus,Kazan,organic,mobile,1998,male
+417,2025-11-22,2025-11-22 17:00:51,Russia,Kazan,email,tablet,2004,female
+418,2025-10-28,2025-10-28 10:03:15,Kazakhstan,Saint Petersburg,social,desktop,2000,male
+419,2025-05-19,2025-05-19 04:24:02,Belarus,Minsk,referral,mobile,2006,female
+420,2025-02-03,2025-02-03 06:43:37,Belarus,Kazan,ads,tablet,1987,male
+421,2025-04-15,2025-04-15 01:40:49,Russia,Minsk,ads,tablet,1997,female
+422,2025-05-21,2025-05-21 01:58:11,Russia,Saint Petersburg,organic,desktop,1999,female
+423,2025-10-23,2025-10-23 16:15:49,Kazakhstan,Saint Petersburg,ads,mobile,1990,female
+424,2025-06-24,2025-06-24 07:31:34,Belarus,Almaty,email,desktop,1988,male
+425,2025-02-04,2025-02-04 19:18:29,Kazakhstan,Almaty,organic,tablet,2004,female
+426,2025-12-02,2025-12-02 10:26:12,Kazakhstan,Saint Petersburg,social,desktop,1997,male
+427,2025-10-09,2025-10-09 12:02:03,Belarus,Moscow,email,tablet,1990,female
+428,2025-03-07,2025-03-07 19:52:14,Russia,Kazan,social,desktop,2000,male
+429,2025-01-25,2025-01-25 13:41:33,Russia,Minsk,social,desktop,1994,female
+430,2025-10-31,2025-10-31 22:58:54,Russia,Kazan,social,mobile,2005,female
+431,2025-08-19,2025-08-19 14:40:36,Belarus,Moscow,referral,mobile,1989,female
+432,2025-01-03,2025-01-03 15:04:35,Kazakhstan,Kazan,email,desktop,1995,female
+433,2025-05-10,2025-05-10 23:58:03,Kazakhstan,Almaty,ads,desktop,1995,male
+434,2025-07-06,2025-07-06 00:41:39,Kazakhstan,Moscow,referral,desktop,1994,female
+435,2025-08-12,2025-08-12 15:35:02,Russia,Kazan,referral,desktop,1997,female
+436,2025-02-14,2025-02-14 05:30:41,Belarus,Moscow,email,tablet,1990,male
+437,2025-10-10,2025-10-10 10:07:11,Kazakhstan,Moscow,referral,desktop,1987,female
+438,2025-09-19,2025-09-19 08:36:22,Kazakhstan,Moscow,social,mobile,1993,male
+439,2025-10-05,2025-10-05 18:29:10,Kazakhstan,Minsk,organic,desktop,2004,female
+440,2025-08-15,2025-08-15 02:54:27,Kazakhstan,Almaty,email,tablet,1998,male
+441,2025-11-04,2025-11-04 02:03:11,Kazakhstan,Almaty,email,tablet,1987,male
+442,2025-10-26,2025-10-26 15:10:16,Russia,Kazan,ads,tablet,2004,male
+443,2025-08-07,2025-08-07 17:35:36,Belarus,Minsk,social,desktop,1988,male
+444,2025-02-08,2025-02-08 07:04:47,Kazakhstan,Moscow,email,tablet,2001,male
+445,2025-06-23,2025-06-23 02:57:26,Kazakhstan,Minsk,referral,tablet,2003,male
+446,2025-05-14,2025-05-14 23:19:44,Russia,Minsk,organic,desktop,1998,male
+447,2025-02-15,2025-02-15 01:50:40,Belarus,Moscow,social,desktop,1995,female
+448,2025-11-01,2025-11-01 13:55:34,Russia,Almaty,referral,desktop,2000,male
+449,2025-06-20,2025-06-20 04:00:09,Belarus,Minsk,social,mobile,1994,male
+450,2025-11-11,2025-11-11 15:28:48,Belarus,Saint Petersburg,organic,desktop,2005,male
+451,2025-09-20,2025-09-20 23:23:45,Russia,Moscow,email,mobile,2002,male
+452,2025-05-09,2025-05-09 13:02:49,Belarus,Minsk,referral,mobile,1997,male
+453,2025-03-14,2025-03-14 09:15:07,Belarus,Minsk,referral,mobile,2004,male
+454,2025-06-24,2025-06-24 14:20:34,Belarus,Minsk,referral,mobile,1991,male
+455,2025-04-19,2025-04-19 02:21:42,Belarus,Saint Petersburg,email,mobile,2002,male
+456,2025-05-23,2025-05-23 01:26:17,Kazakhstan,Moscow,referral,mobile,1993,female
+457,2025-07-24,2025-07-24 22:39:37,Belarus,Kazan,email,desktop,2004,female
+458,2025-08-16,2025-08-16 23:16:49,Russia,Kazan,social,desktop,2004,male
+459,2025-11-13,2025-11-13 00:35:24,Belarus,Kazan,email,tablet,1987,male
+460,2025-05-02,2025-05-02 15:06:09,Russia,Moscow,social,mobile,1990,female
+461,2025-09-27,2025-09-27 07:17:49,Russia,Almaty,referral,desktop,2004,male
+462,2025-08-12,2025-08-12 05:34:50,Kazakhstan,Minsk,ads,desktop,2005,male
+463,2025-08-04,2025-08-04 12:09:36,Russia,Minsk,social,mobile,1990,female
+464,2025-11-23,2025-11-23 23:52:15,Kazakhstan,Almaty,organic,desktop,1985,female
+465,2025-02-23,2025-02-23 00:35:44,Russia,Minsk,email,tablet,2005,female
+466,2025-06-08,2025-06-08 21:24:30,Belarus,Minsk,referral,tablet,1999,female
+467,2025-03-06,2025-03-06 22:54:55,Russia,Almaty,organic,mobile,1994,male
+468,2025-04-17,2025-04-17 17:48:53,Russia,Almaty,social,mobile,1999,female
+469,2025-08-02,2025-08-02 11:49:09,Belarus,Saint Petersburg,email,mobile,1993,female
+470,2025-07-30,2025-07-30 12:12:37,Russia,Minsk,email,mobile,1998,male
+471,2025-10-13,2025-10-13 19:54:42,Belarus,Moscow,social,mobile,1999,female
+472,2025-05-16,2025-05-16 08:58:22,Russia,Minsk,organic,mobile,1991,female
+473,2025-12-01,2025-12-01 09:33:19,Belarus,Almaty,referral,mobile,2004,male
+474,2025-11-01,2025-11-01 19:19:32,Russia,Moscow,organic,tablet,1996,female
+475,2025-08-20,2025-08-20 19:07:00,Belarus,Moscow,social,tablet,1994,female
+476,2025-08-11,2025-08-11 10:16:57,Kazakhstan,Almaty,organic,mobile,1998,male
+477,2025-04-18,2025-04-18 16:50:33,Belarus,Moscow,ads,mobile,1989,female
+478,2025-11-18,2025-11-18 18:00:36,Russia,Minsk,referral,mobile,2003,female
+479,2025-09-01,2025-09-01 19:38:22,Kazakhstan,Minsk,referral,mobile,2005,male
+480,2025-06-06,2025-06-06 10:50:28,Belarus,Kazan,social,desktop,2000,female
+481,2025-08-15,2025-08-15 00:13:07,Russia,Saint Petersburg,referral,tablet,2006,female
+482,2025-11-27,2025-11-27 03:33:52,Russia,Almaty,referral,mobile,1998,male
+483,2025-07-12,2025-07-12 03:04:39,Kazakhstan,Kazan,social,desktop,2002,male
+484,2025-08-08,2025-08-08 20:49:36,Kazakhstan,Kazan,organic,mobile,1988,female
+485,2025-01-07,2025-01-07 07:45:11,Russia,Moscow,referral,desktop,1985,female
+486,2025-03-20,2025-03-20 13:44:32,Belarus,Moscow,social,mobile,1993,male
+487,2025-09-12,2025-09-12 05:12:07,Kazakhstan,Kazan,organic,desktop,2006,male
+488,2025-01-21,2025-01-21 02:41:32,Kazakhstan,Kazan,ads,desktop,2005,male
+489,2025-10-01,2025-10-01 06:56:28,Russia,Saint Petersburg,ads,desktop,1987,male
+490,2025-08-19,2025-08-19 13:29:38,Russia,Almaty,referral,mobile,1985,female
+491,2025-11-14,2025-11-14 08:00:29,Russia,Minsk,ads,desktop,1987,male
+492,2025-05-29,2025-05-29 18:28:13,Russia,Saint Petersburg,organic,desktop,1996,female
+493,2025-02-23,2025-02-23 06:08:15,Kazakhstan,Moscow,ads,mobile,2001,male
+494,2025-08-26,2025-08-26 00:35:15,Belarus,Moscow,referral,desktop,1991,male
+495,2025-12-24,2025-12-24 06:02:04,Kazakhstan,Almaty,referral,mobile,1987,male
+496,2025-02-24,2025-02-24 09:01:01,Russia,Almaty,referral,desktop,1998,female
+497,2025-11-04,2025-11-04 05:22:08,Russia,Moscow,social,tablet,1987,male
+498,2025-08-03,2025-08-03 22:01:49,Belarus,Almaty,email,desktop,1985,female
+499,2025-03-21,2025-03-21 18:53:34,Belarus,Almaty,email,mobile,1997,female
+500,2025-09-08,2025-09-08 22:44:19,Russia,Moscow,referral,desktop,1988,male
