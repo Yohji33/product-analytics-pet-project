@@ -1,106 +1,161 @@
 # Product Analytics Pet Project
 
-This repository contains a pet project for developing skills in:
+Portfolio project for practicing data analytics and product analytics on synthetic e-commerce data.
 
-- product analytics
-- data analytics
-- SQL and PostgreSQL
-- Python and pandas
-- Power BI
+The project covers the full analytical workflow:
 
-## Project idea
+- data generation
+- PostgreSQL database design
+- SQL analysis
+- Python EDA
+- dashboard-ready visualizations
+- business insights
 
-The project simulates analytics for an e-commerce product.
-We will build a small analytical system from scratch:
+## Project Scenario
 
-- design a PostgreSQL database
-- load sample product and user activity data
-- calculate core business and product metrics with SQL
-- analyze data in Python
-- build dashboards in Power BI
+We analyze a simulated online store and answer product and business questions:
 
-## Main goals
+- How many users visit the product?
+- How many users add items to cart?
+- How many users complete purchases?
+- What is the session-to-order conversion?
+- Which channels generate the most revenue?
+- Which traffic sources convert best?
+- Which product categories drive revenue?
+- How does retention change by signup cohort?
 
-- learn how to work with relational data in PostgreSQL
-- practice SQL on realistic analytical tasks
-- understand product metrics such as conversion, retention, revenue, and average order value
-- create a portfolio-ready project for analyst roles
+## Stack
 
-## Planned stack
+- PostgreSQL
+- SQL
+- Python
+- pandas
+- NumPy
+- matplotlib
+- seaborn
+- Jupyter Notebook
+- Power BI, planned
 
-- `PostgreSQL`
-- `SQL`
-- `Python`
-- `pandas`
-- `NumPy`
-- `Jupyter Notebook`
-- `Power BI`
+## Data Model
 
-## Repository structure
+The database contains six main tables:
 
-- `sql/` — schema, data loading scripts, and analytical queries
-- `notebooks/` — Python notebooks for exploratory analysis
-- `data/` — source and generated datasets
-- `dashboards/` — dashboard files and screenshots
-- `docs/` — project notes, metric definitions, and roadmap
+- `users` - user profile and acquisition data
+- `products` - product catalog
+- `sessions` - user visits
+- `events` - product events such as `view_item`, `add_to_cart`, `purchase`
+- `orders` - order-level data
+- `order_items` - product-level order data
 
-## Project scenario
+## Repository Structure
 
-We assume that we work with an online store and want to answer questions such as:
+- `data/sample/` - generated CSV data
+- `sql/` - database schema, data loading scripts, and analytical queries
+- `notebooks/` - Python EDA notebook and script
+- `dashboards/figures/` - generated charts
+- `docs/` - project scope, roadmap, setup guide, and analysis summary
+- `scripts/` - data and notebook generation scripts
 
-- how many users visit the product
-- how many of them add items to cart
-- how many complete a purchase
-- what the conversion rate is
-- how revenue changes over time
-- which categories sell the best
-- how user retention changes by signup cohort
+## Key Metrics
 
-## First stage
+Current generated dataset:
 
-At the first stage, this repository includes:
+- Users: 500
+- Sessions: 2,225
+- Paid orders: 425
+- Events: 6,752
+- Revenue: 221,082.40
+- Average order value: 520.19
+- Session-to-order conversion: 19.10%
 
-- database schema for PostgreSQL
-- metric definitions
-- starter SQL queries for business analysis
-- sample data generator
+## Key Findings
 
-## How to generate sample data
+### Monthly Dynamics
 
-Run:
+December 2025 is the strongest month:
 
-```bash
-python scripts/generate_sample_data.py
-```
+- Revenue: 23,873.00
+- Paid orders: 48
+- Session-to-order conversion: 24.49%
 
-The script will create CSV files in `data/sample/` for:
+### Funnel
 
-- `users`
-- `products`
-- `sessions`
-- `orders`
-- `order_items`
-- `events`
+Product funnel:
 
-## How to load data into PostgreSQL
+`view_item -> add_to_cart -> purchase`
 
-Detailed steps are in:
+Results:
 
-- `docs/postgres_setup.md`
+- Viewed users: 500
+- Cart users: 385
+- Purchase users: 290
+- View-to-cart conversion: 77.00%
+- Cart-to-purchase conversion: 75.32%
+- View-to-purchase conversion: 58.00%
 
-Main SQL scripts:
+### Traffic Sources
 
-- `sql/01_create_schema.sql`
-- `sql/03_load_data.sql`
-- `sql/04_validation_queries.sql`
-- `sql/02_analytics_queries.sql`
-- `sql/05_product_analysis.sql`
+Best source by view-to-purchase conversion:
 
-Main analysis summary:
+- `telegram`: 32.16%
 
-- `docs/analysis_summary.md`
+Lowest source:
 
-## Python EDA
+- `google`: 23.36%
+
+### Acquisition Channels
+
+Top channels by revenue:
+
+- `referral`: 51,970.96
+- `social`: 51,335.17
+- `email`: 45,207.53
+
+Best channel by user-to-buyer conversion:
+
+- `email`: 62.37%
+
+### Categories
+
+Top categories by revenue:
+
+- Electronics: 80,141.63
+- Home: 67,450.40
+- Sports: 48,133.28
+- Beauty: 32,551.16
+
+## Visualizations
+
+Generated EDA charts:
+
+- [Monthly revenue](dashboards/figures/monthly_revenue.png)
+- [User funnel](dashboards/figures/user_funnel.png)
+- [Revenue by category](dashboards/figures/category_revenue.png)
+- [Device conversion](dashboards/figures/device_conversion.png)
+
+## Main Files
+
+SQL:
+
+- [Database schema](sql/01_create_schema.sql)
+- [Data loading script](sql/03_load_data.sql)
+- [Validation queries](sql/04_validation_queries.sql)
+- [Product analysis queries](sql/05_product_analysis.sql)
+
+Python:
+
+- [EDA notebook](notebooks/01_eda_analysis.ipynb)
+- [EDA script](notebooks/eda_analysis.py)
+- [Sample data generator](scripts/generate_sample_data.py)
+
+Documentation:
+
+- [Analysis summary](docs/analysis_summary.md)
+- [PostgreSQL setup](docs/postgres_setup.md)
+- [Project scope](docs/project_scope.md)
+- [Roadmap](docs/roadmap.md)
+
+## How to Reproduce
 
 Install dependencies:
 
@@ -108,22 +163,47 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run EDA:
+Generate sample data:
+
+```bash
+python scripts/generate_sample_data.py
+```
+
+Create PostgreSQL schema:
+
+```sql
+\i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/01_create_schema.sql'
+```
+
+Load sample data:
+
+```sql
+\i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/03_load_data.sql'
+```
+
+Run validation:
+
+```sql
+\i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/04_validation_queries.sql'
+```
+
+Run product analysis:
+
+```sql
+\i 'C:/Users/iliya/Desktop/product-analytics-pet-project/sql/05_product_analysis.sql'
+```
+
+Run Python EDA:
 
 ```bash
 python notebooks/eda_analysis.py
 ```
 
-The script creates charts in `dashboards/figures/`.
+## Next Steps
 
-Main notebook:
-
-- `notebooks/01_eda_analysis.ipynb`
-
-## Next steps
-
-1. Create the database in PostgreSQL.
-2. Generate or load sample data into the tables.
-3. Run analytical SQL queries.
-4. Build a Python notebook for exploratory analysis.
-5. Create a Power BI dashboard.
+- Build Power BI dashboard
+- Add dashboard screenshots
+- Add acquisition cost data
+- Calculate CAC, LTV, and payback period
+- Add repeat purchase analysis
+- Add a simple ML model for purchase probability
