@@ -87,6 +87,16 @@ def generate_products() -> list[dict]:
     return products
 
 
+def generate_marketing_spend() -> list[dict]:
+    return [
+        {"acquisition_channel": "organic", "marketing_spend": 4500},
+        {"acquisition_channel": "ads", "marketing_spend": 24500},
+        {"acquisition_channel": "social", "marketing_spend": 17000},
+        {"acquisition_channel": "referral", "marketing_spend": 11000},
+        {"acquisition_channel": "email", "marketing_spend": 8500},
+    ]
+
+
 def generate_sessions(users: list[dict]) -> list[dict]:
     traffic_sources = ["google", "yandex", "telegram", "vk", "email", "direct"]
     sessions = []
@@ -221,6 +231,7 @@ def main() -> None:
 
     users = generate_users(n_users=500)
     products = generate_products()
+    marketing_spend = generate_marketing_spend()
     sessions = generate_sessions(users)
     orders, order_items, events = generate_orders(users, sessions, products)
 
@@ -243,6 +254,11 @@ def main() -> None:
         OUTPUT_DIR / "products.csv",
         products,
         ["product_id", "product_name", "category", "brand", "price", "cost", "created_at", "is_active"],
+    )
+    write_csv(
+        OUTPUT_DIR / "marketing_spend.csv",
+        marketing_spend,
+        ["acquisition_channel", "marketing_spend"],
     )
     write_csv(
         OUTPUT_DIR / "sessions.csv",
@@ -286,6 +302,7 @@ def main() -> None:
     print(f"Sample data generated in: {OUTPUT_DIR}")
     print(f"Users: {len(users)}")
     print(f"Products: {len(products)}")
+    print(f"Marketing spend rows: {len(marketing_spend)}")
     print(f"Sessions: {len(sessions)}")
     print(f"Orders: {len(orders)}")
     print(f"Order items: {len(order_items)}")

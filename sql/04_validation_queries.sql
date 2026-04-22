@@ -3,6 +3,8 @@ SELECT 'users' AS table_name, COUNT(*) AS row_count FROM users
 UNION ALL
 SELECT 'products', COUNT(*) FROM products
 UNION ALL
+SELECT 'marketing_spend', COUNT(*) FROM marketing_spend
+UNION ALL
 SELECT 'sessions', COUNT(*) FROM sessions
 UNION ALL
 SELECT 'orders', COUNT(*) FROM orders

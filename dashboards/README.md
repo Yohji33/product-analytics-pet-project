@@ -9,6 +9,14 @@
 - `product_analytics_dashboard.html` - статический dashboard для портфолио
 - `screenshots/product_analytics_dashboard.png` - превью dashboard для README
 
+Ключевые BI-датасеты:
+
+- `powerbi_data/kpi_overview.csv` - общие KPI
+- `powerbi_data/monthly_metrics.csv` - динамика по месяцам
+- `powerbi_data/funnel.csv` - продуктовая воронка
+- `powerbi_data/acquisition_channel_metrics.csv` - выручка и конверсия по каналам
+- `powerbi_data/marketing_efficiency.csv` - CAC, ROMI и окупаемость каналов
+
 ## Как обновить dashboard
 
 Если CSV-файлы в `powerbi_data/` изменились, пересоберите dashboard:

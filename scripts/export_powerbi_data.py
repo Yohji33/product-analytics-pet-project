@@ -14,6 +14,7 @@ def load_data() -> dict[str, pd.DataFrame]:
     return {
         "users": pd.read_csv(DATA_DIR / "users.csv", parse_dates=["signup_date", "first_session_at"]),
         "products": pd.read_csv(DATA_DIR / "products.csv", parse_dates=["created_at"]),
+        "marketing_spend": pd.read_csv(DATA_DIR / "marketing_spend.csv"),
         "sessions": pd.read_csv(
             DATA_DIR / "sessions.csv",
             parse_dates=["session_started_at", "session_ended_at"],
@@ -131,6 +132,19 @@ def build_acquisition_channel_metrics(users: pd.DataFrame, orders: pd.DataFrame)
     return metrics.sort_values("revenue", ascending=False)
 
 
+def build_marketing_efficiency(channel_metrics: pd.DataFrame, marketing_spend: pd.DataFrame) -> pd.DataFrame:
+    metrics = channel_metrics.merge(marketing_spend, on="acquisition_channel", how="left").fillna(
+        {"marketing_spend": 0}
+    )
+    metrics["cost_per_user"] = metrics["marketing_spend"] / metrics["users_count"].replace(0, pd.NA)
+    metrics["cac"] = metrics["marketing_spend"] / metrics["paying_users_count"].replace(0, pd.NA)
+    metrics["revenue_per_user"] = metrics["revenue"] / metrics["users_count"].replace(0, pd.NA)
+    metrics["profit_after_marketing"] = metrics["revenue"] - metrics["marketing_spend"]
+    metrics["romi"] = metrics["profit_after_marketing"] / metrics["marketing_spend"].replace(0, pd.NA)
+    metrics["payback_ratio"] = metrics["revenue"] / metrics["marketing_spend"].replace(0, pd.NA)
+    return metrics.sort_values("romi", ascending=False)
+
+
 def build_device_metrics(sessions: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
     paid_orders = orders[orders["payment_status"] == "paid"].copy()
     paid_orders["order_date"] = paid_orders["order_created_at"].dt.date
@@ -215,13 +229,18 @@ def build_retention_cohorts(users: pd.DataFrame, sessions: pd.DataFrame) -> pd.D
 
 def main() -> None:
     data = load_data()
+    acquisition_channel_metrics = build_acquisition_channel_metrics(data["users"], data["orders"])
 
     datasets = {
         "kpi_overview.csv": build_kpi_overview(data["users"], data["sessions"], data["orders"]),
         "monthly_metrics.csv": build_monthly_metrics(data["sessions"], data["orders"]),
         "funnel.csv": build_funnel(data["events"]),
         "traffic_source_funnel.csv": build_traffic_source_funnel(data["events"], data["sessions"]),
-        "acquisition_channel_metrics.csv": build_acquisition_channel_metrics(data["users"], data["orders"]),
+        "acquisition_channel_metrics.csv": acquisition_channel_metrics,
+        "marketing_efficiency.csv": build_marketing_efficiency(
+            acquisition_channel_metrics,
+            data["marketing_spend"],
+        ),
         "device_metrics.csv": build_device_metrics(data["sessions"], data["orders"]),
         "category_revenue.csv": build_category_revenue(data["products"], data["orders"], data["order_items"]),
         "top_products.csv": build_top_products(data["products"], data["orders"], data["order_items"]),

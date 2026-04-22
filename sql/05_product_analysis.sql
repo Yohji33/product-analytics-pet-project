@@ -133,7 +133,38 @@ LEFT JOIN orders o
 GROUP BY s.device_type
 ORDER BY revenue DESC;
 
--- 7. Лучшие категории товаров по выручке
+-- 7. Эффективность каналов привлечения: CAC, ROMI и окупаемость
+WITH channel_metrics AS (
+    SELECT
+        u.acquisition_channel,
+        COUNT(DISTINCT u.user_id) AS users_count,
+        COUNT(DISTINCT o.user_id) AS paying_users_count,
+        COUNT(DISTINCT o.order_id) AS paid_orders_count,
+        COALESCE(SUM(o.total_amount), 0) AS revenue
+    FROM users u
+    LEFT JOIN orders o
+        ON o.user_id = u.user_id
+        AND o.payment_status = 'paid'
+    GROUP BY u.acquisition_channel
+)
+SELECT
+    cm.acquisition_channel,
+    cm.users_count,
+    cm.paying_users_count,
+    cm.paid_orders_count,
+    cm.revenue,
+    ms.marketing_spend,
+    ROUND(ms.marketing_spend / NULLIF(cm.users_count, 0), 2) AS cost_per_user,
+    ROUND(ms.marketing_spend / NULLIF(cm.paying_users_count, 0), 2) AS cac,
+    ROUND(cm.revenue / NULLIF(cm.users_count, 0), 2) AS revenue_per_user,
+    ROUND(cm.revenue - ms.marketing_spend, 2) AS profit_after_marketing,
+    ROUND((cm.revenue - ms.marketing_spend) / NULLIF(ms.marketing_spend, 0), 4) AS romi,
+    ROUND(cm.revenue / NULLIF(ms.marketing_spend, 0), 4) AS payback_ratio
+FROM channel_metrics cm
+JOIN marketing_spend ms ON ms.acquisition_channel = cm.acquisition_channel
+ORDER BY romi DESC;
+
+-- 8. Лучшие категории товаров по выручке
 SELECT
     p.category,
     COUNT(DISTINCT o.order_id) AS paid_orders_count,
@@ -147,7 +178,7 @@ WHERE o.payment_status = 'paid'
 GROUP BY p.category
 ORDER BY revenue DESC;
 
--- 8. Топ-10 товаров по выручке
+-- 9. Топ-10 товаров по выручке
 SELECT
     p.product_id,
     p.product_name,
@@ -163,7 +194,7 @@ GROUP BY p.product_id, p.product_name, p.category
 ORDER BY revenue DESC
 LIMIT 10;
 
--- 9. Месячный когортный retention
+-- 10. Месячный когортный retention
 WITH cohort_base AS (
     SELECT
         user_id,
@@ -207,7 +238,7 @@ FROM cohort_activity ca
 JOIN cohort_sizes cs ON cs.cohort_month = ca.cohort_month
 ORDER BY ca.cohort_month, ca.month_number;
 
--- 10. Пользователи, которые добавили товар в корзину, но не совершили покупку
+-- 11. Пользователи, которые добавили товар в корзину, но не совершили покупку
 WITH cart_users AS (
     SELECT DISTINCT user_id
     FROM events

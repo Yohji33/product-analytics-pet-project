@@ -114,6 +114,36 @@ LEFT JOIN orders o
     AND o.payment_status = 'paid'
 GROUP BY u.acquisition_channel;
 
+CREATE OR REPLACE VIEW vw_marketing_efficiency AS
+WITH channel_metrics AS (
+    SELECT
+        u.acquisition_channel,
+        COUNT(DISTINCT u.user_id) AS users_count,
+        COUNT(DISTINCT o.user_id) AS paying_users_count,
+        COUNT(DISTINCT o.order_id) AS paid_orders_count,
+        COALESCE(SUM(o.total_amount), 0) AS revenue
+    FROM users u
+    LEFT JOIN orders o
+        ON o.user_id = u.user_id
+        AND o.payment_status = 'paid'
+    GROUP BY u.acquisition_channel
+)
+SELECT
+    cm.acquisition_channel,
+    cm.users_count,
+    cm.paying_users_count,
+    cm.paid_orders_count,
+    cm.revenue,
+    ms.marketing_spend,
+    ROUND(ms.marketing_spend / NULLIF(cm.users_count, 0), 2) AS cost_per_user,
+    ROUND(ms.marketing_spend / NULLIF(cm.paying_users_count, 0), 2) AS cac,
+    ROUND(cm.revenue / NULLIF(cm.users_count, 0), 2) AS revenue_per_user,
+    ROUND(cm.revenue - ms.marketing_spend, 2) AS profit_after_marketing,
+    ROUND((cm.revenue - ms.marketing_spend) / NULLIF(ms.marketing_spend, 0), 4) AS romi,
+    ROUND(cm.revenue / NULLIF(ms.marketing_spend, 0), 4) AS payback_ratio
+FROM channel_metrics cm
+JOIN marketing_spend ms ON ms.acquisition_channel = cm.acquisition_channel;
+
 CREATE OR REPLACE VIEW vw_device_metrics AS
 SELECT
     s.device_type,

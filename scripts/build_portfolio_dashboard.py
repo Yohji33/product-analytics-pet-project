@@ -97,7 +97,7 @@ def add_card(fig, rect, label, value, note, color):
     ax.text(0.11, 0.14, note, color=MUTED, fontsize=8, transform=ax.transAxes)
 
 
-def build_png(kpi, monthly, funnel, channels, devices, categories, top_products):
+def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_products):
     plt.rcParams["font.family"] = "DejaVu Sans"
     fig = plt.figure(figsize=(16, 10), dpi=160)
     fig.patch.set_facecolor(BG)
@@ -149,23 +149,24 @@ def build_png(kpi, monthly, funnel, channels, devices, categories, top_products)
         ax.text(row["users_count"] + 8, row["event_label"], fmt_int(row["users_count"]), va="center", fontsize=9, color=INK)
     ax.set_xlim(0, funnel["users_count"].max() * 1.22)
 
-    channels = channels.sort_values("revenue")
-    ax = add_panel(fig, [0.04, 0.18, 0.285, 0.265], "Выручка по каналам")
-    ax.barh(channels["acquisition_channel"], channels["revenue"], color=TEAL, alpha=0.9)
+    marketing = marketing_efficiency.sort_values("romi")
+    ax = add_panel(fig, [0.04, 0.18, 0.285, 0.265], "ROMI по каналам")
+    ax.barh(marketing["acquisition_channel"], marketing["romi"], color=TEAL, alpha=0.9)
     ax.grid(axis="x", color=GRID)
     ax.grid(axis="y", visible=False)
-    for y, value in enumerate(channels["revenue"]):
-        ax.text(value + 900, y, fmt_money(value), va="center", fontsize=7.5, color=INK)
-    ax.set_xlim(0, channels["revenue"].max() * 1.25)
+    ax.xaxis.set_major_formatter(lambda value, _: f"{value * 100:.0f}%")
+    for y, value in enumerate(marketing["romi"]):
+        ax.text(value + 0.12, y, fmt_percent(value), va="center", fontsize=7.5, color=INK)
+    ax.set_xlim(0, marketing["romi"].max() * 1.25)
 
-    devices = devices.sort_values("session_to_order_conversion", ascending=False)
-    ax = add_panel(fig, [0.365, 0.18, 0.255, 0.265], "Конверсия по устройствам")
-    bars = ax.bar(devices["device_type"], devices["session_to_order_conversion"], color=[TEAL, BLUE, RED], alpha=0.9)
-    ax.set_ylim(0, devices["session_to_order_conversion"].max() * 1.35)
-    ax.yaxis.set_major_formatter(lambda value, _: f"{value * 100:.0f}%")
-    ax.grid(axis="x", visible=False)
-    for bar, value in zip(bars, devices["session_to_order_conversion"]):
-        ax.text(bar.get_x() + bar.get_width() / 2, value + 0.006, fmt_percent(value), ha="center", fontsize=8, color=INK)
+    cac = marketing_efficiency.sort_values("cac", ascending=False)
+    ax = add_panel(fig, [0.365, 0.18, 0.255, 0.265], "CAC по каналам")
+    ax.barh(cac["acquisition_channel"], cac["cac"], color=[RED, ORANGE, BLUE, TEAL, YELLOW], alpha=0.9)
+    ax.grid(axis="x", color=GRID)
+    ax.grid(axis="y", visible=False)
+    for y, value in enumerate(cac["cac"]):
+        ax.text(value + 8, y, fmt_money(value), va="center", fontsize=7.5, color=INK)
+    ax.set_xlim(0, cac["cac"].max() * 1.28)
 
     categories = categories.sort_values("revenue")
     ax = add_panel(fig, [0.66, 0.18, 0.295, 0.265], "Выручка по категориям")
@@ -177,10 +178,12 @@ def build_png(kpi, monthly, funnel, channels, devices, categories, top_products)
     ax.set_xlim(0, categories["revenue"].max() * 1.27)
 
     top = top_products.sort_values("revenue", ascending=False).head(3)
+    best_romi = marketing_efficiency.sort_values("romi", ascending=False).iloc[0]
+    worst_cac = marketing_efficiency.sort_values("cac", ascending=False).iloc[0]
     insights = [
         f"Лидер по выручке: {top.iloc[0]['product_name']} ({fmt_money(top.iloc[0]['revenue'])})",
-        "Лучший канал по выручке: referral; по конверсии пользователя в покупателя: email",
-        "Desktop даёт самую высокую конверсию сессии в заказ, mobile отстаёт",
+        f"Лучший ROMI: {best_romi['acquisition_channel']} ({fmt_percent(best_romi['romi'])})",
+        f"Самый дорогой CAC: {worst_cac['acquisition_channel']} ({fmt_money(worst_cac['cac'])})",
     ]
     fig.text(0.04, 0.105, "Короткие выводы", fontsize=13, fontweight="bold", color=INK)
     for index, insight in enumerate(insights):
@@ -194,8 +197,8 @@ def build_png(kpi, monthly, funnel, channels, devices, categories, top_products)
     return output_path
 
 
-def bar_rows(df, label_col, value_col, formatter, limit=None):
-    data = df.sort_values(value_col, ascending=False)
+def bar_rows(df, label_col, value_col, formatter, limit=None, ascending=False):
+    data = df.sort_values(value_col, ascending=ascending)
     if limit:
         data = data.head(limit)
     max_value = data[value_col].max()
@@ -214,7 +217,7 @@ def bar_rows(df, label_col, value_col, formatter, limit=None):
     return "\n".join(rows)
 
 
-def build_html(kpi, monthly, funnel, channels, devices, categories, top_products):
+def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, categories, top_products):
     monthly = monthly.copy()
     monthly["month"] = pd.to_datetime(monthly["month"])
     monthly["month_label"] = monthly["month"].dt.strftime("%b")
@@ -345,6 +348,16 @@ def build_html(kpi, monthly, funnel, channels, devices, categories, top_products
     </article>
 
     <article class="card third">
+      <h2>ROMI по каналам</h2>
+      {bar_rows(marketing_efficiency, "acquisition_channel", "romi", fmt_percent)}
+    </article>
+
+    <article class="card third">
+      <h2>CAC по каналам</h2>
+      {bar_rows(marketing_efficiency, "acquisition_channel", "cac", fmt_money, ascending=True)}
+    </article>
+
+    <article class="card third">
       <h2>Конверсия по устройствам</h2>
       {bar_rows(devices, "device_type", "session_to_order_conversion", fmt_percent)}
     </article>
@@ -362,13 +375,13 @@ def build_html(kpi, monthly, funnel, channels, devices, categories, top_products
     <article class="card side">
       <h2>Что видно из данных</h2>
       <p>Лучший месяц по выручке - декабрь 2025. Самый сильный канал по выручке - referral, а по конверсии пользователя в покупателя выделяется email.</p>
-      <p>Desktop даёт самую высокую конверсию сессии в заказ, поэтому мобильный сценарий стоит проверить отдельно.</p>
+      <p>Organic даёт лучший ROMI, потому что требует минимального бюджета. Ads приносит продажи, но имеет самый дорогой CAC, поэтому бюджет стоит проверять осторожнее.</p>
     </article>
 
     <section class="notes">
       <div class="note"><b>Продукт:</b> воронка высокая, но этап корзина -> покупка всё равно стоит контролировать.</div>
-      <div class="note"><b>Маркетинг:</b> referral и social дают максимум выручки, email лучше конвертирует пользователей.</div>
-      <div class="note"><b>UX:</b> mobile отстаёт по конверсии, это кандидат на отдельный анализ.</div>
+      <div class="note"><b>Маркетинг:</b> referral и social дают максимум выручки, но organic лучше окупается.</div>
+      <div class="note"><b>Бюджет:</b> ads имеет самый высокий CAC, значит канал нужно оптимизировать или ограничивать.</div>
     </section>
   </section>
 </main>
@@ -376,7 +389,8 @@ def build_html(kpi, monthly, funnel, channels, devices, categories, top_products
 </html>
 """
     output_path = DASHBOARDS_DIR / "product_analytics_dashboard.html"
-    output_path.write_text(html, encoding="utf-8")
+    clean_html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
+    output_path.write_text(clean_html, encoding="utf-8")
     return output_path
 
 
@@ -385,12 +399,13 @@ def main():
     monthly = read_csv("monthly_metrics.csv")
     funnel = read_csv("funnel.csv")
     channels = read_csv("acquisition_channel_metrics.csv")
+    marketing_efficiency = read_csv("marketing_efficiency.csv")
     devices = read_csv("device_metrics.csv")
     categories = read_csv("category_revenue.csv")
     top_products = read_csv("top_products.csv")
 
-    png_path = build_png(kpi, monthly, funnel, channels, devices, categories, top_products)
-    html_path = build_html(kpi, monthly, funnel, channels, devices, categories, top_products)
+    png_path = build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_products)
+    html_path = build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, categories, top_products)
 
     print(f"Dashboard image: {png_path}")
     print(f"Dashboard HTML: {html_path}")

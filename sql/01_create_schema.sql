@@ -1,4 +1,4 @@
-ъCREATE TABLE users (
+CREATE TABLE users (
     user_id BIGSERIAL PRIMARY KEY,
     signup_date DATE NOT NULL,
     first_session_at TIMESTAMP,
@@ -19,6 +19,11 @@ CREATE TABLE products (
     cost NUMERIC(10, 2),
     created_at TIMESTAMP NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE marketing_spend (
+    acquisition_channel VARCHAR(100) PRIMARY KEY,
+    marketing_spend NUMERIC(12, 2) NOT NULL CHECK (marketing_spend >= 0)
 );
 
 CREATE TABLE sessions (

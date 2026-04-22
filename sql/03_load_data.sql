@@ -1,10 +1,12 @@
 \echo Loading sample CSV data into PostgreSQL...
 
-TRUNCATE TABLE events, order_items, orders, sessions, products, users RESTART IDENTITY CASCADE;
+TRUNCATE TABLE events, order_items, orders, sessions, products, marketing_spend, users RESTART IDENTITY CASCADE;
 
 \copy users(user_id, signup_date, first_session_at, country, city, acquisition_channel, device_type, birth_year, gender) FROM 'C:/Users/iliya/Desktop/product-analytics-pet-project/data/sample/users.csv' WITH (FORMAT csv, HEADER true, NULL '');
 
 \copy products(product_id, product_name, category, brand, price, cost, created_at, is_active) FROM 'C:/Users/iliya/Desktop/product-analytics-pet-project/data/sample/products.csv' WITH (FORMAT csv, HEADER true, NULL '');
+
+\copy marketing_spend(acquisition_channel, marketing_spend) FROM 'C:/Users/iliya/Desktop/product-analytics-pet-project/data/sample/marketing_spend.csv' WITH (FORMAT csv, HEADER true, NULL '');
 
 \copy sessions(session_id, user_id, session_started_at, session_ended_at, traffic_source, device_type, country, city) FROM 'C:/Users/iliya/Desktop/product-analytics-pet-project/data/sample/sessions.csv' WITH (FORMAT csv, HEADER true, NULL '');
 
