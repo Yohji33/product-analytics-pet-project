@@ -2,14 +2,7 @@
 
 Портфолио-проект для практики data analytics и product analytics на синтетических данных интернет-магазина.
 
-Проект охватывает полный аналитический цикл:
-
-- генерация данных
-- проектирование базы данных в PostgreSQL
-- SQL-анализ
-- EDA в Python
-- подготовка визуализаций для дашборда
-- формулирование бизнес-выводов
+Проект показывает полный аналитический цикл: генерация данных, проектирование базы, SQL-анализ, EDA в Python, подготовка витрин для BI и визуализация результатов в дашборде.
 
 ## Сценарий проекта
 
@@ -34,7 +27,19 @@
 - matplotlib
 - seaborn
 - Jupyter Notebook
-- Power BI, запланировано
+- Power BI
+- Git и GitHub
+
+## Дашборд
+
+В проект добавлена портфолио-версия дашборда:
+
+- [HTML-дашборд](dashboards/product_analytics_dashboard.html)
+- [PNG-превью](dashboards/screenshots/product_analytics_dashboard.png)
+- [Данные для Power BI](dashboards/powerbi_data/)
+- [Инструкция по сборке Power BI dashboard](docs/powerbi_dashboard_guide.md)
+
+![Product Analytics Dashboard](dashboards/screenshots/product_analytics_dashboard.png)
 
 ## Модель данных
 
@@ -52,10 +57,12 @@
 - `data/sample/` - сгенерированные CSV-данные
 - `sql/` - схема БД, загрузка данных и аналитические запросы
 - `notebooks/` - EDA в Python и Jupyter Notebook
-- `dashboards/figures/` - сгенерированные графики
+- `dashboards/figures/` - графики из Python EDA
 - `dashboards/powerbi_data/` - подготовленные CSV-файлы для Power BI
+- `dashboards/product_analytics_dashboard.html` - статический dashboard для портфолио
+- `dashboards/screenshots/` - изображения дашбордов для README
 - `docs/` - описание проекта, roadmap, настройка PostgreSQL и выводы
-- `scripts/` - скрипты генерации данных и notebook
+- `scripts/` - скрипты генерации данных, notebook и dashboard
 
 ## Ключевые метрики
 
@@ -125,15 +132,6 @@
 - Sports: 48 133.28
 - Beauty: 32 551.16
 
-## Визуализации
-
-Сгенерированные графики EDA:
-
-- [Выручка по месяцам](dashboards/figures/monthly_revenue.png)
-- [Пользовательская воронка](dashboards/figures/user_funnel.png)
-- [Выручка по категориям](dashboards/figures/category_revenue.png)
-- [Конверсия по устройствам](dashboards/figures/device_conversion.png)
-
 ## Основные файлы
 
 SQL:
@@ -149,6 +147,7 @@ Python:
 - [EDA notebook](notebooks/01_eda_analysis.ipynb)
 - [EDA script](notebooks/eda_analysis.py)
 - [Генератор данных](scripts/generate_sample_data.py)
+- [Генератор dashboard](scripts/build_portfolio_dashboard.py)
 
 Документация:
 
@@ -208,11 +207,17 @@ python notebooks/eda_analysis.py
 python scripts/export_powerbi_data.py
 ```
 
+Собрать портфолио-дашборд:
+
+```bash
+python scripts/build_portfolio_dashboard.py
+```
+
 ## Следующие шаги
 
-- собрать дашборд в Power BI по инструкции `docs/powerbi_dashboard_guide.md`
-- добавить скриншоты дашборда
+- повторить dashboard в Power BI по готовому макету
+- добавить скриншот Power BI dashboard
 - добавить данные о стоимости привлечения
 - рассчитать CAC, LTV и payback period
 - добавить анализ повторных покупок
-- добавить простую ML-модель для оценки вероятности покупки
+- добавить простой A/B-тест

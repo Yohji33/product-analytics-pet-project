@@ -6,11 +6,19 @@
 
 - `figures/` - PNG-графики из Python EDA
 - `powerbi_data/` - подготовленные CSV-датасеты для Power BI
+- `product_analytics_dashboard.html` - статический dashboard для портфолио
+- `screenshots/product_analytics_dashboard.png` - превью dashboard для README
 
-## Основной следующий этап
+## Как обновить dashboard
 
-Собрать дашборд в Power BI Desktop на основе файлов из `powerbi_data/`.
+Если CSV-файлы в `powerbi_data/` изменились, пересоберите dashboard:
 
-Подробная инструкция:
+```bash
+python scripts/build_portfolio_dashboard.py
+```
 
-- `docs/powerbi_dashboard_guide.md`
+## Power BI
+
+Для ручной сборки dashboard в Power BI Desktop используйте файлы из `powerbi_data/`.
+
+Подробная инструкция: `docs/powerbi_dashboard_guide.md`

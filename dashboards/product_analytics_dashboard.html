@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Analytics Dashboard</title>
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --card: #fffaf0;
+      --ink: #17212b;
+      --muted: #69747e;
+      --line: #eadfce;
+      --orange: #d76f36;
+      --teal: #197b72;
+      --blue: #436f9f;
+      --yellow: #e4af45;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(215,111,54,.24), transparent 26rem),
+        radial-gradient(circle at bottom right, rgba(25,123,114,.18), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 42px 28px 52px; }
+    header { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 24px; }
+    h1 { margin: 0; font-size: 42px; letter-spacing: -.04em; }
+    h2 { margin: 0 0 16px; font-size: 18px; }
+    p { color: var(--muted); line-height: 1.5; }
+    .subtitle { max-width: 720px; margin: 8px 0 0; }
+    .badge { border: 1px solid var(--line); background: rgba(255,250,240,.72); padding: 10px 14px; border-radius: 999px; color: var(--muted); white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      background: rgba(255,250,240,.9);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 48px rgba(23,33,43,.07);
+    }
+    .kpi { grid-column: span 3; min-height: 138px; position: relative; overflow: hidden; }
+    .kpi:before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--accent); }
+    .kpi span { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .kpi strong { display: block; margin-top: 14px; font-size: 34px; letter-spacing: -.03em; }
+    .kpi small { display: block; color: var(--muted); margin-top: 8px; }
+    .wide { grid-column: span 7; }
+    .side { grid-column: span 5; }
+    .third { grid-column: span 4; }
+    .bars { height: 270px; display: flex; gap: 10px; align-items: end; padding-top: 20px; border-bottom: 1px solid var(--line); }
+    .month-bar { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: end; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+    .month-value { width: 100%; min-height: 8px; border-radius: 12px 12px 4px 4px; background: linear-gradient(180deg, var(--orange), #b9562a); }
+    .funnel-row, .bar-row { display: grid; grid-template-columns: 110px 1fr 86px; gap: 12px; align-items: center; margin: 13px 0; }
+    .funnel-track, .bar-track { height: 18px; border-radius: 999px; background: #eadfce; overflow: hidden; }
+    .funnel-fill, .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--teal), var(--orange)); }
+    .bar-label, .funnel-row span { color: var(--muted); font-weight: 700; }
+    .bar-value, .funnel-row b { text-align: right; }
+    .notes { grid-column: span 12; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .note { background: rgba(23,33,43,.92); color: white; border-radius: 22px; padding: 20px; }
+    .note b { color: #ffd88b; }
+    @media (max-width: 900px) {
+      .kpi, .wide, .side, .third, .notes { grid-column: span 12; }
+      .notes { grid-template-columns: 1fr; }
+      header { display: block; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Product Analytics Dashboard</h1>
+      <p class="subtitle">Учебная аналитическая витрина по e-commerce: KPI, динамика выручки, воронка и сегменты, которые помогают понять, где продукт зарабатывает и где теряет пользователей.</p>
+    </div>
+    <div class="badge">CSV -> Python -> Dashboard</div>
+  </header>
+
+  <section class="grid">
+    <article class="card kpi" style="--accent: var(--orange)"><span>Выручка</span><strong>221 082</strong><small>за весь период</small></article>
+    <article class="card kpi" style="--accent: var(--teal)"><span>Оплаченные заказы</span><strong>425</strong><small>успешные покупки</small></article>
+    <article class="card kpi" style="--accent: var(--blue)"><span>Средний чек</span><strong>520</strong><small>выручка / заказы</small></article>
+    <article class="card kpi" style="--accent: var(--yellow)"><span>Конверсия</span><strong>19.1%</strong><small>сессия -> заказ</small></article>
+
+    <article class="card wide">
+      <h2>Выручка по месяцам</h2>
+      <div class="bars">
+        <div class="month-bar">
+          <div class="month-value" style="height: 13.2%"></div>
+          <span>Jan</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 54.3%"></div>
+          <span>Feb</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 46.5%"></div>
+          <span>Mar</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 71.7%"></div>
+          <span>Apr</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 80.4%"></div>
+          <span>May</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 55.4%"></div>
+          <span>Jun</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 85.7%"></div>
+          <span>Jul</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 80.5%"></div>
+          <span>Aug</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 75.8%"></div>
+          <span>Sep</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 83.1%"></div>
+          <span>Oct</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 65.3%"></div>
+          <span>Nov</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 100.0%"></div>
+          <span>Dec</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 71.4%"></div>
+          <span>Jan</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 34.4%"></div>
+          <span>Feb</span>
+        </div>
+        
+
+        <div class="month-bar">
+          <div class="month-value" style="height: 8.3%"></div>
+          <span>Mar</span>
+        </div>
+        </div>
+    </article>
+
+    <article class="card side">
+      <h2>Воронка пользователей</h2>
+      
+        <div class="funnel-row">
+          <span>Просмотр</span>
+          <div class="funnel-track"><div class="funnel-fill" style="width: 100.0%"></div></div>
+          <b>500</b>
+        </div>
+        
+
+        <div class="funnel-row">
+          <span>Корзина</span>
+          <div class="funnel-track"><div class="funnel-fill" style="width: 77.0%"></div></div>
+          <b>385</b>
+        </div>
+        
+
+        <div class="funnel-row">
+          <span>Покупка</span>
+          <div class="funnel-track"><div class="funnel-fill" style="width: 58.0%"></div></div>
+          <b>290</b>
+        </div>
+        
+    </article>
+
+    <article class="card third">
+      <h2>Выручка по каналам</h2>
+      
+            <div class="bar-row">
+              <div class="bar-label">referral</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100.0%"></div></div>
+              <div class="bar-value">51 971</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">social</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 98.8%"></div></div>
+              <div class="bar-value">51 335</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">email</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 87.0%"></div></div>
+              <div class="bar-value">45 208</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">ads</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 77.0%"></div></div>
+              <div class="bar-value">40 015</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">organic</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 62.6%"></div></div>
+              <div class="bar-value">32 554</div>
+            </div>
+            
+    </article>
+
+    <article class="card third">
+      <h2>Конверсия по устройствам</h2>
+      
+            <div class="bar-row">
+              <div class="bar-label">desktop</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100.0%"></div></div>
+              <div class="bar-value">21.1%</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">tablet</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 93.8%"></div></div>
+              <div class="bar-value">19.8%</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">mobile</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 72.1%"></div></div>
+              <div class="bar-value">15.2%</div>
+            </div>
+            
+    </article>
+
+    <article class="card third">
+      <h2>Выручка по категориям</h2>
+      
+            <div class="bar-row">
+              <div class="bar-label">Electronics</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100.0%"></div></div>
+              <div class="bar-value">80 142</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Home</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 84.2%"></div></div>
+              <div class="bar-value">67 450</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Sports</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 60.1%"></div></div>
+              <div class="bar-value">48 133</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Beauty</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 40.6%"></div></div>
+              <div class="bar-value">32 551</div>
+            </div>
+            
+    </article>
+
+    <article class="card wide">
+      <h2>Топ товаров по выручке</h2>
+      
+            <div class="bar-row">
+              <div class="bar-label">Orion Headphones</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 100.0%"></div></div>
+              <div class="bar-value">25 476</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Atlas Laptop</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 98.8%"></div></div>
+              <div class="bar-value">25 172</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Pulse Chair</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 96.1%"></div></div>
+              <div class="bar-value">24 489</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Aero Storage Box</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 69.5%"></div></div>
+              <div class="bar-value">17 694</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Aero Phone</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 63.0%"></div></div>
+              <div class="bar-value">16 052</div>
+            </div>
+            
+
+            <div class="bar-row">
+              <div class="bar-label">Atlas Lamp</div>
+              <div class="bar-track"><div class="bar-fill" style="width: 58.4%"></div></div>
+              <div class="bar-value">14 890</div>
+            </div>
+            
+    </article>
+
+    <article class="card side">
+      <h2>Что видно из данных</h2>
+      <p>Лучший месяц по выручке - декабрь 2025. Самый сильный канал по выручке - referral, а по конверсии пользователя в покупателя выделяется email.</p>
+      <p>Desktop даёт самую высокую конверсию сессии в заказ, поэтому мобильный сценарий стоит проверить отдельно.</p>
+    </article>
+
+    <section class="notes">
+      <div class="note"><b>Продукт:</b> воронка высокая, но этап корзина -> покупка всё равно стоит контролировать.</div>
+      <div class="note"><b>Маркетинг:</b> referral и social дают максимум выручки, email лучше конвертирует пользователей.</div>
+      <div class="note"><b>UX:</b> mobile отстаёт по конверсии, это кандидат на отдельный анализ.</div>
+    </section>
+  </section>
+</main>
+</body>
+</html>
