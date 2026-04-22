@@ -16,6 +16,18 @@
 - `powerbi_data/funnel.csv` - продуктовая воронка
 - `powerbi_data/acquisition_channel_metrics.csv` - выручка и конверсия по каналам
 - `powerbi_data/marketing_efficiency.csv` - CAC, ROMI и окупаемость каналов
+- `powerbi_data/repeat_purchase_summary.csv` - повторные покупки и LTV
+- `powerbi_data/ltv_by_channel.csv` - LTV/CAC по каналам
+- `powerbi_data/ab_test_results.csv` - результаты A/B-теста
+
+Ключевые PNG-графики:
+
+- `figures/monthly_revenue.png` - выручка по месяцам
+- `figures/user_funnel.png` - продуктовая воронка
+- `figures/category_revenue.png` - выручка по категориям
+- `figures/device_conversion.png` - конверсия по устройствам
+- `figures/ltv_cac_by_channel.png` - LTV/CAC по каналам
+- `figures/ab_test_conversion.png` - конверсия A/B-теста
 
 ## Как обновить dashboard
 

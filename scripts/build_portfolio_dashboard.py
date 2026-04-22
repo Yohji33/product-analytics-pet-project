@@ -40,6 +40,10 @@ def fmt_percent(value: float) -> str:
     return f"{value * 100:.1f}%"
 
 
+def fmt_ratio(value: float) -> str:
+    return f"{value:.2f}x"
+
+
 def add_panel(fig, rect, title=None):
     ax = fig.add_axes(rect)
     ax.set_facecolor(CARD)
@@ -97,29 +101,29 @@ def add_card(fig, rect, label, value, note, color):
     ax.text(0.11, 0.14, note, color=MUTED, fontsize=8, transform=ax.transAxes)
 
 
-def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_products):
+def build_png(kpi, monthly, funnel, marketing_efficiency, ltv_by_channel, repeat_summary, ab_test_results, categories, top_products):
     plt.rcParams["font.family"] = "DejaVu Sans"
-    fig = plt.figure(figsize=(16, 10), dpi=160)
+    fig = plt.figure(figsize=(16, 12), dpi=160)
     fig.patch.set_facecolor(BG)
 
-    fig.text(0.04, 0.955, "Product Analytics Dashboard", fontsize=24, fontweight="bold", color=INK)
+    fig.text(0.04, 0.965, "Product Analytics Dashboard", fontsize=24, fontweight="bold", color=INK)
     fig.text(
         0.04,
-        0.925,
-        "Синтетические данные e-commerce: выручка, заказы, воронка и ключевые сегменты",
+        0.94,
+        "Синтетические данные e-commerce: выручка, воронка, CAC/ROMI, LTV и A/B-тест",
         fontsize=10,
         color=MUTED,
     )
 
-    add_card(fig, [0.04, 0.80, 0.21, 0.105], "Выручка", fmt_money(kpi["Выручка"]), "за весь период", ORANGE)
-    add_card(fig, [0.275, 0.80, 0.21, 0.105], "Оплаченные заказы", fmt_int(kpi["Оплаченные заказы"]), "успешные покупки", TEAL)
-    add_card(fig, [0.51, 0.80, 0.21, 0.105], "Средний чек", fmt_money(kpi["Средний чек"]), "выручка / заказы", BLUE)
-    add_card(fig, [0.745, 0.80, 0.21, 0.105], "Конверсия", fmt_percent(kpi["Конверсия сессии в заказ"]), "сессия -> заказ", YELLOW)
+    add_card(fig, [0.04, 0.83, 0.21, 0.085], "Выручка", fmt_money(kpi["Выручка"]), "за весь период", ORANGE)
+    add_card(fig, [0.275, 0.83, 0.21, 0.085], "Оплаченные заказы", fmt_int(kpi["Оплаченные заказы"]), "успешные покупки", TEAL)
+    add_card(fig, [0.51, 0.83, 0.21, 0.085], "Средний чек", fmt_money(kpi["Средний чек"]), "выручка / заказы", BLUE)
+    add_card(fig, [0.745, 0.83, 0.21, 0.085], "Конверсия", fmt_percent(kpi["Конверсия сессии в заказ"]), "сессия -> заказ", YELLOW)
 
     monthly = monthly.copy()
     monthly["month"] = pd.to_datetime(monthly["month"])
     monthly["month_label"] = monthly["month"].dt.strftime("%b")
-    ax = add_panel(fig, [0.04, 0.505, 0.57, 0.245], "Выручка по месяцам")
+    ax = add_panel(fig, [0.04, 0.60, 0.57, 0.19], "Выручка по месяцам")
     ax.bar(monthly["month_label"], monthly["revenue"], color=ORANGE, alpha=0.82)
     ax.plot(monthly["month_label"], monthly["revenue"], color=INK, linewidth=1.8, marker="o", markersize=4)
     ax.set_ylabel("Выручка", color=MUTED, fontsize=8)
@@ -140,7 +144,7 @@ def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_produc
     event_labels = {"view_item": "Просмотр", "add_to_cart": "Корзина", "purchase": "Покупка"}
     funnel["event_label"] = funnel["event_type"].map(event_labels).fillna(funnel["event_type"])
     funnel = funnel.sort_values("step_order")
-    ax = add_panel(fig, [0.65, 0.505, 0.305, 0.245], "Воронка пользователей")
+    ax = add_panel(fig, [0.65, 0.60, 0.305, 0.19], "Воронка пользователей")
     ax.barh(funnel["event_label"], funnel["users_count"], color=[BLUE, TEAL, ORANGE], alpha=0.9)
     ax.invert_yaxis()
     ax.grid(axis="x", color=GRID)
@@ -150,7 +154,7 @@ def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_produc
     ax.set_xlim(0, funnel["users_count"].max() * 1.22)
 
     marketing = marketing_efficiency.sort_values("romi")
-    ax = add_panel(fig, [0.04, 0.18, 0.285, 0.265], "ROMI по каналам")
+    ax = add_panel(fig, [0.04, 0.36, 0.285, 0.19], "ROMI по каналам")
     ax.barh(marketing["acquisition_channel"], marketing["romi"], color=TEAL, alpha=0.9)
     ax.grid(axis="x", color=GRID)
     ax.grid(axis="y", visible=False)
@@ -160,7 +164,7 @@ def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_produc
     ax.set_xlim(0, marketing["romi"].max() * 1.25)
 
     cac = marketing_efficiency.sort_values("cac", ascending=False)
-    ax = add_panel(fig, [0.365, 0.18, 0.255, 0.265], "CAC по каналам")
+    ax = add_panel(fig, [0.365, 0.36, 0.255, 0.19], "CAC по каналам")
     ax.barh(cac["acquisition_channel"], cac["cac"], color=[RED, ORANGE, BLUE, TEAL, YELLOW], alpha=0.9)
     ax.grid(axis="x", color=GRID)
     ax.grid(axis="y", visible=False)
@@ -169,7 +173,7 @@ def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_produc
     ax.set_xlim(0, cac["cac"].max() * 1.28)
 
     categories = categories.sort_values("revenue")
-    ax = add_panel(fig, [0.66, 0.18, 0.295, 0.265], "Выручка по категориям")
+    ax = add_panel(fig, [0.66, 0.36, 0.295, 0.19], "Выручка по категориям")
     ax.barh(categories["category"], categories["revenue"], color=BLUE, alpha=0.9)
     ax.grid(axis="x", color=GRID)
     ax.grid(axis="y", visible=False)
@@ -177,18 +181,46 @@ def build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_produc
         ax.text(value + 1400, y, fmt_money(value), va="center", fontsize=7.5, color=INK)
     ax.set_xlim(0, categories["revenue"].max() * 1.27)
 
+    ltv = ltv_by_channel.sort_values("ltv_cac_ratio")
+    ax = add_panel(fig, [0.04, 0.13, 0.285, 0.18], "LTV/CAC по каналам")
+    ax.barh(ltv["acquisition_channel"], ltv["ltv_cac_ratio"], color=BLUE, alpha=0.9)
+    ax.grid(axis="x", color=GRID)
+    ax.grid(axis="y", visible=False)
+    for y, value in enumerate(ltv["ltv_cac_ratio"]):
+        ax.text(value + 0.12, y, fmt_ratio(value), va="center", fontsize=7.5, color=INK)
+    ax.set_xlim(0, ltv["ltv_cac_ratio"].max() * 1.25)
+
+    repeat_metrics = repeat_summary.set_index("metric")["value"].to_dict()
+    ax = add_panel(fig, [0.365, 0.13, 0.255, 0.18], "Повторные покупки")
+    labels = ["Покупатели", "Повторные"]
+    values = [repeat_metrics["Покупатели"], repeat_metrics["Повторные покупатели"]]
+    bars = ax.bar(labels, values, color=[TEAL, ORANGE], alpha=0.9)
+    ax.grid(axis="x", visible=False)
+    for bar, value in zip(bars, values):
+        ax.text(bar.get_x() + bar.get_width() / 2, value + 5, fmt_int(value), ha="center", fontsize=8, color=INK)
+    ax.set_ylim(0, max(values) * 1.25)
+
+    ab = ab_test_results.sort_values("variant")
+    ax = add_panel(fig, [0.66, 0.13, 0.295, 0.18], "A/B-тест CTA")
+    bars = ax.bar(ab["variant"], ab["conversion_rate"], color=[BLUE, ORANGE], alpha=0.9)
+    ax.yaxis.set_major_formatter(lambda value, _: f"{value * 100:.0f}%")
+    ax.grid(axis="x", visible=False)
+    for bar, value in zip(bars, ab["conversion_rate"]):
+        ax.text(bar.get_x() + bar.get_width() / 2, value + 0.008, fmt_percent(value), ha="center", fontsize=8, color=INK)
+    ax.set_ylim(0, ab["conversion_rate"].max() * 1.35)
+
     top = top_products.sort_values("revenue", ascending=False).head(3)
     best_romi = marketing_efficiency.sort_values("romi", ascending=False).iloc[0]
-    worst_cac = marketing_efficiency.sort_values("cac", ascending=False).iloc[0]
+    test_row = ab_test_results.loc[ab_test_results["variant"] == "test"].iloc[0]
     insights = [
         f"Лидер по выручке: {top.iloc[0]['product_name']} ({fmt_money(top.iloc[0]['revenue'])})",
         f"Лучший ROMI: {best_romi['acquisition_channel']} ({fmt_percent(best_romi['romi'])})",
-        f"Самый дорогой CAC: {worst_cac['acquisition_channel']} ({fmt_money(worst_cac['cac'])})",
+        f"A/B-тест: test +{fmt_percent(test_row['absolute_uplift'])} к конверсии, p-value {test_row['p_value']:.3f}",
     ]
-    fig.text(0.04, 0.105, "Короткие выводы", fontsize=13, fontweight="bold", color=INK)
+    fig.text(0.04, 0.06, "Короткие выводы", fontsize=13, fontweight="bold", color=INK)
     for index, insight in enumerate(insights):
-        fig.text(0.055, 0.078 - index * 0.026, f"{index + 1}. {insight}", fontsize=9.5, color=MUTED)
-    fig.text(0.74, 0.045, "Источник: CSV-витрины из dashboards/powerbi_data", fontsize=8, color=MUTED)
+        fig.text(0.055, 0.038 - index * 0.018, f"{index + 1}. {insight}", fontsize=9.5, color=MUTED)
+    fig.text(0.74, 0.025, "Источник: CSV-витрины из dashboards/powerbi_data", fontsize=8, color=MUTED)
 
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
     output_path = SCREENSHOTS_DIR / "product_analytics_dashboard.png"
@@ -217,7 +249,31 @@ def bar_rows(df, label_col, value_col, formatter, limit=None, ascending=False):
     return "\n".join(rows)
 
 
-def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, categories, top_products):
+def metric_rows(metric_dict, rows):
+    return "\n".join(
+        f"""
+        <div class="metric-line">
+          <span>{escape(label)}</span>
+          <b>{escape(formatter(metric_dict[metric]))}</b>
+        </div>
+        """
+        for metric, label, formatter in rows
+    )
+
+
+def build_html(
+    kpi,
+    monthly,
+    funnel,
+    channels,
+    marketing_efficiency,
+    ltv_by_channel,
+    repeat_summary,
+    ab_test_results,
+    devices,
+    categories,
+    top_products,
+):
     monthly = monthly.copy()
     monthly["month"] = pd.to_datetime(monthly["month"])
     monthly["month_label"] = monthly["month"].dt.strftime("%b")
@@ -245,6 +301,16 @@ def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, ca
         </div>
         """
         for _, row in funnel.iterrows()
+    )
+    repeat_metrics = repeat_summary.set_index("metric")["value"].to_dict()
+    repeat_rows = metric_rows(
+        repeat_metrics,
+        [
+            ("Повторные покупатели", "Повторные покупатели", fmt_int),
+            ("Доля повторных покупателей", "Repeat purchase rate", fmt_percent),
+            ("LTV на пользователя", "LTV на пользователя", fmt_money),
+            ("LTV на покупателя", "LTV на покупателя", fmt_money),
+        ],
     )
 
     html = f"""<!doctype html>
@@ -306,6 +372,8 @@ def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, ca
     .funnel-fill, .bar-fill {{ height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--teal), var(--orange)); }}
     .bar-label, .funnel-row span {{ color: var(--muted); font-weight: 700; }}
     .bar-value, .funnel-row b {{ text-align: right; }}
+    .metric-line {{ display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); color: var(--muted); }}
+    .metric-line b {{ color: var(--ink); }}
     .notes {{ grid-column: span 12; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }}
     .note {{ background: rgba(23,33,43,.92); color: white; border-radius: 22px; padding: 20px; }}
     .note b {{ color: #ffd88b; }}
@@ -358,6 +426,11 @@ def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, ca
     </article>
 
     <article class="card third">
+      <h2>LTV/CAC по каналам</h2>
+      {bar_rows(ltv_by_channel, "acquisition_channel", "ltv_cac_ratio", fmt_ratio)}
+    </article>
+
+    <article class="card third">
       <h2>Конверсия по устройствам</h2>
       {bar_rows(devices, "device_type", "session_to_order_conversion", fmt_percent)}
     </article>
@@ -373,15 +446,26 @@ def build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, ca
     </article>
 
     <article class="card side">
+      <h2>Повторные покупки</h2>
+      {repeat_rows}
+    </article>
+
+    <article class="card wide">
+      <h2>A/B-тест CTA</h2>
+      {bar_rows(ab_test_results, "variant", "conversion_rate", fmt_percent)}
+    </article>
+
+    <article class="card side">
       <h2>Что видно из данных</h2>
       <p>Лучший месяц по выручке - декабрь 2025. Самый сильный канал по выручке - referral, а по конверсии пользователя в покупателя выделяется email.</p>
-      <p>Organic даёт лучший ROMI, потому что требует минимального бюджета. Ads приносит продажи, но имеет самый дорогой CAC, поэтому бюджет стоит проверять осторожнее.</p>
+      <p>Organic даёт лучший ROMI и LTV/CAC. Ads приносит продажи, но имеет самый дорогой CAC, поэтому бюджет стоит проверять осторожнее.</p>
+      <p>В A/B-тесте тестовая CTA-кнопка показывает положительный uplift конверсии.</p>
     </article>
 
     <section class="notes">
       <div class="note"><b>Продукт:</b> воронка высокая, но этап корзина -> покупка всё равно стоит контролировать.</div>
-      <div class="note"><b>Маркетинг:</b> referral и social дают максимум выручки, но organic лучше окупается.</div>
-      <div class="note"><b>Бюджет:</b> ads имеет самый высокий CAC, значит канал нужно оптимизировать или ограничивать.</div>
+      <div class="note"><b>Маркетинг:</b> referral и social дают максимум выручки, но organic лучше окупается по ROMI и LTV/CAC.</div>
+      <div class="note"><b>Эксперимент:</b> test-вариант CTA можно раскатывать после проверки на большем трафике.</div>
     </section>
   </section>
 </main>
@@ -400,12 +484,37 @@ def main():
     funnel = read_csv("funnel.csv")
     channels = read_csv("acquisition_channel_metrics.csv")
     marketing_efficiency = read_csv("marketing_efficiency.csv")
+    ltv_by_channel = read_csv("ltv_by_channel.csv")
+    repeat_summary = read_csv("repeat_purchase_summary.csv")
+    ab_test_results = read_csv("ab_test_results.csv")
     devices = read_csv("device_metrics.csv")
     categories = read_csv("category_revenue.csv")
     top_products = read_csv("top_products.csv")
 
-    png_path = build_png(kpi, monthly, funnel, marketing_efficiency, categories, top_products)
-    html_path = build_html(kpi, monthly, funnel, channels, marketing_efficiency, devices, categories, top_products)
+    png_path = build_png(
+        kpi,
+        monthly,
+        funnel,
+        marketing_efficiency,
+        ltv_by_channel,
+        repeat_summary,
+        ab_test_results,
+        categories,
+        top_products,
+    )
+    html_path = build_html(
+        kpi,
+        monthly,
+        funnel,
+        channels,
+        marketing_efficiency,
+        ltv_by_channel,
+        repeat_summary,
+        ab_test_results,
+        devices,
+        categories,
+        top_products,
+    )
 
     print(f"Dashboard image: {png_path}")
     print(f"Dashboard HTML: {html_path}")

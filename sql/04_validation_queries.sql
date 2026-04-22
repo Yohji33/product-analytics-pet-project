@@ -5,6 +5,8 @@ SELECT 'products', COUNT(*) FROM products
 UNION ALL
 SELECT 'marketing_spend', COUNT(*) FROM marketing_spend
 UNION ALL
+SELECT 'ab_test_assignments', COUNT(*) FROM ab_test_assignments
+UNION ALL
 SELECT 'sessions', COUNT(*) FROM sessions
 UNION ALL
 SELECT 'orders', COUNT(*) FROM orders
@@ -40,6 +42,11 @@ WHERE u.user_id IS NULL;
 SELECT COUNT(*) AS orphan_orders
 FROM orders o
 LEFT JOIN users u ON u.user_id = o.user_id
+WHERE u.user_id IS NULL;
+
+SELECT COUNT(*) AS orphan_ab_test_assignments
+FROM ab_test_assignments a
+LEFT JOIN users u ON u.user_id = a.user_id
 WHERE u.user_id IS NULL;
 
 SELECT COUNT(*) AS orphan_order_items

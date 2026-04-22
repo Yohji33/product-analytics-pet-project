@@ -1,4 +1,4 @@
--- 1. Daily revenue and number of paid orders
+-- 1. Дневная выручка и количество оплаченных заказов
 SELECT
     DATE(order_created_at) AS order_date,
     COUNT(*) AS orders_count,
@@ -9,7 +9,7 @@ WHERE payment_status = 'paid'
 GROUP BY DATE(order_created_at)
 ORDER BY order_date;
 
--- 2. Revenue by product category
+-- 2. Выручка по категориям товаров
 SELECT
     p.category,
     SUM(oi.item_amount) AS category_revenue,
@@ -21,7 +21,7 @@ WHERE o.payment_status = 'paid'
 GROUP BY p.category
 ORDER BY category_revenue DESC;
 
--- 3. Session to order conversion by day
+-- 3. Дневная конверсия из сессии в заказ
 WITH daily_sessions AS (
     SELECT
         DATE(session_started_at) AS event_date,
@@ -46,7 +46,7 @@ FROM daily_sessions s
 LEFT JOIN daily_orders o ON o.event_date = s.event_date
 ORDER BY s.event_date;
 
--- 4. Funnel by event type
+-- 4. Воронка по типам событий
 SELECT
     event_type,
     COUNT(*) AS events_count,
@@ -56,7 +56,7 @@ FROM events
 GROUP BY event_type
 ORDER BY events_count DESC;
 
--- 5. Monthly signup cohorts and month-1 retention
+-- 5. Месячные когорты регистрации и retention
 WITH cohort_base AS (
     SELECT
         user_id,

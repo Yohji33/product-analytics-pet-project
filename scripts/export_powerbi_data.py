@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -15,6 +16,7 @@ def load_data() -> dict[str, pd.DataFrame]:
         "users": pd.read_csv(DATA_DIR / "users.csv", parse_dates=["signup_date", "first_session_at"]),
         "products": pd.read_csv(DATA_DIR / "products.csv", parse_dates=["created_at"]),
         "marketing_spend": pd.read_csv(DATA_DIR / "marketing_spend.csv"),
+        "ab_test_assignments": pd.read_csv(DATA_DIR / "ab_test_assignments.csv", parse_dates=["assigned_at"]),
         "sessions": pd.read_csv(
             DATA_DIR / "sessions.csv",
             parse_dates=["session_started_at", "session_ended_at"],
@@ -145,6 +147,117 @@ def build_marketing_efficiency(channel_metrics: pd.DataFrame, marketing_spend: p
     return metrics.sort_values("romi", ascending=False)
 
 
+def build_repeat_purchase_summary(users: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    paid_orders = orders[orders["payment_status"] == "paid"]
+    user_orders = paid_orders.groupby("user_id", as_index=False).agg(
+        orders_count=("order_id", "nunique"),
+        revenue=("total_amount", "sum"),
+    )
+    users_with_orders = users[["user_id"]].merge(user_orders, on="user_id", how="left").fillna(0)
+
+    users_count = users["user_id"].nunique()
+    paying_users_count = (users_with_orders["orders_count"] > 0).sum()
+    repeat_buyers_count = (users_with_orders["orders_count"] >= 2).sum()
+    revenue = users_with_orders["revenue"].sum()
+    repeat_revenue = users_with_orders.loc[users_with_orders["orders_count"] >= 2, "revenue"].sum()
+
+    rows = [
+        {"metric": "Покупатели", "value": paying_users_count},
+        {"metric": "Повторные покупатели", "value": repeat_buyers_count},
+        {"metric": "Доля повторных покупателей", "value": repeat_buyers_count / paying_users_count},
+        {"metric": "Среднее заказов на покупателя", "value": paid_orders["order_id"].nunique() / paying_users_count},
+        {"metric": "Выручка повторных покупателей", "value": repeat_revenue},
+        {"metric": "Доля выручки повторных покупателей", "value": repeat_revenue / revenue},
+        {"metric": "LTV на пользователя", "value": revenue / users_count},
+        {"metric": "LTV на покупателя", "value": revenue / paying_users_count},
+    ]
+    return pd.DataFrame(rows)
+
+
+def build_ltv_by_channel(users: pd.DataFrame, orders: pd.DataFrame, marketing_spend: pd.DataFrame) -> pd.DataFrame:
+    paid_orders = orders[orders["payment_status"] == "paid"]
+    user_orders = paid_orders.groupby("user_id", as_index=False).agg(
+        orders_count=("order_id", "nunique"),
+        revenue=("total_amount", "sum"),
+    )
+    user_ltv = (
+        users[["user_id", "acquisition_channel"]]
+        .merge(user_orders, on="user_id", how="left")
+        .fillna({"orders_count": 0, "revenue": 0})
+    )
+
+    rows = []
+    for channel, group in user_ltv.groupby("acquisition_channel"):
+        users_count = group["user_id"].nunique()
+        paying_users_count = (group["orders_count"] > 0).sum()
+        repeat_buyers_count = (group["orders_count"] >= 2).sum()
+        total_revenue = group["revenue"].sum()
+        rows.append(
+            {
+                "acquisition_channel": channel,
+                "users_count": users_count,
+                "paying_users_count": paying_users_count,
+                "repeat_buyers_count": repeat_buyers_count,
+                "repeat_purchase_rate": repeat_buyers_count / paying_users_count if paying_users_count else 0,
+                "total_revenue": total_revenue,
+                "avg_ltv_per_user": total_revenue / users_count if users_count else 0,
+                "avg_ltv_per_paying_user": total_revenue / paying_users_count if paying_users_count else 0,
+                "average_orders_per_paying_user": group.loc[group["orders_count"] > 0, "orders_count"].mean(),
+            }
+        )
+
+    metrics = pd.DataFrame(rows).merge(marketing_spend, on="acquisition_channel", how="left")
+    metrics["cac"] = metrics["marketing_spend"] / metrics["paying_users_count"].replace(0, pd.NA)
+    metrics["ltv_cac_ratio"] = metrics["avg_ltv_per_paying_user"] / metrics["cac"].replace(0, pd.NA)
+    metrics["payback_ratio"] = metrics["total_revenue"] / metrics["marketing_spend"].replace(0, pd.NA)
+    return metrics.sort_values("ltv_cac_ratio", ascending=False)
+
+
+def build_ab_test_results(ab_test_assignments: pd.DataFrame) -> pd.DataFrame:
+    results = (
+        ab_test_assignments.groupby("variant", as_index=False)
+        .agg(
+            users_count=("user_id", "nunique"),
+            conversions_count=("converted", "sum"),
+            revenue=("conversion_revenue", "sum"),
+        )
+        .sort_values("variant")
+    )
+    results["conversion_rate"] = results["conversions_count"] / results["users_count"]
+    results["avg_revenue_per_user"] = results["revenue"] / results["users_count"]
+    results["avg_revenue_per_converter"] = results["revenue"] / results["conversions_count"].replace(0, pd.NA)
+
+    control = results.loc[results["variant"] == "control"].iloc[0]
+    rows = []
+    for _, row in results.iterrows():
+        absolute_uplift = row["conversion_rate"] - control["conversion_rate"]
+        relative_uplift = absolute_uplift / control["conversion_rate"] if control["conversion_rate"] else 0
+        z_score = 0
+        p_value = 1
+        if row["variant"] != "control":
+            pooled = (row["conversions_count"] + control["conversions_count"]) / (
+                row["users_count"] + control["users_count"]
+            )
+            standard_error = math.sqrt(
+                pooled * (1 - pooled) * (1 / row["users_count"] + 1 / control["users_count"])
+            )
+            z_score = absolute_uplift / standard_error if standard_error else 0
+            p_value = math.erfc(abs(z_score) / math.sqrt(2))
+
+        result_row = row.to_dict()
+        result_row.update(
+            {
+                "absolute_uplift": absolute_uplift,
+                "relative_uplift": relative_uplift,
+                "z_score": z_score,
+                "p_value": p_value,
+                "is_statistically_significant": p_value < 0.05,
+            }
+        )
+        rows.append(result_row)
+    return pd.DataFrame(rows)
+
+
 def build_device_metrics(sessions: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
     paid_orders = orders[orders["payment_status"] == "paid"].copy()
     paid_orders["order_date"] = paid_orders["order_created_at"].dt.date
@@ -241,6 +354,13 @@ def main() -> None:
             acquisition_channel_metrics,
             data["marketing_spend"],
         ),
+        "repeat_purchase_summary.csv": build_repeat_purchase_summary(data["users"], data["orders"]),
+        "ltv_by_channel.csv": build_ltv_by_channel(
+            data["users"],
+            data["orders"],
+            data["marketing_spend"],
+        ),
+        "ab_test_results.csv": build_ab_test_results(data["ab_test_assignments"]),
         "device_metrics.csv": build_device_metrics(data["sessions"], data["orders"]),
         "category_revenue.csv": build_category_revenue(data["products"], data["orders"], data["order_items"]),
         "top_products.csv": build_top_products(data["products"], data["orders"], data["order_items"]),

@@ -164,7 +164,118 @@ FROM channel_metrics cm
 JOIN marketing_spend ms ON ms.acquisition_channel = cm.acquisition_channel
 ORDER BY romi DESC;
 
--- 8. Лучшие категории товаров по выручке
+-- 8. Повторные покупки и LTV по каналам привлечения
+WITH user_order_metrics AS (
+    SELECT
+        u.user_id,
+        u.acquisition_channel,
+        COUNT(DISTINCT o.order_id) AS orders_count,
+        COALESCE(SUM(o.total_amount), 0) AS revenue
+    FROM users u
+    LEFT JOIN orders o
+        ON o.user_id = u.user_id
+        AND o.payment_status = 'paid'
+    GROUP BY u.user_id, u.acquisition_channel
+)
+SELECT
+    uom.acquisition_channel,
+    COUNT(DISTINCT uom.user_id) AS users_count,
+    COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0) AS paying_users_count,
+    COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count >= 2) AS repeat_buyers_count,
+    ROUND(
+        COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count >= 2)::NUMERIC
+        / NULLIF(COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0), 0),
+        4
+    ) AS repeat_purchase_rate,
+    SUM(uom.revenue) AS total_revenue,
+    ROUND(SUM(uom.revenue) / NULLIF(COUNT(DISTINCT uom.user_id), 0), 2) AS avg_ltv_per_user,
+    ROUND(
+        SUM(uom.revenue)
+        / NULLIF(COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0), 0),
+        2
+    ) AS avg_ltv_per_paying_user,
+    ROUND(AVG(uom.orders_count) FILTER (WHERE uom.orders_count > 0), 2) AS average_orders_per_paying_user,
+    ms.marketing_spend,
+    ROUND(
+        ms.marketing_spend
+        / NULLIF(COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0), 0),
+        2
+    ) AS cac,
+    ROUND(
+        (
+            SUM(uom.revenue)
+            / NULLIF(COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0), 0)
+        )
+        / NULLIF(
+            ms.marketing_spend
+            / NULLIF(COUNT(DISTINCT uom.user_id) FILTER (WHERE uom.orders_count > 0), 0),
+            0
+        ),
+        2
+    ) AS ltv_cac_ratio
+FROM user_order_metrics uom
+JOIN marketing_spend ms ON ms.acquisition_channel = uom.acquisition_channel
+GROUP BY uom.acquisition_channel, ms.marketing_spend
+ORDER BY ltv_cac_ratio DESC;
+
+-- 9. A/B-тест: новая CTA-кнопка на карточке товара
+WITH experiment_results AS (
+    SELECT
+        variant,
+        COUNT(DISTINCT user_id) AS users_count,
+        COUNT(DISTINCT user_id) FILTER (WHERE converted) AS conversions_count,
+        ROUND(
+            COUNT(DISTINCT user_id) FILTER (WHERE converted)::NUMERIC / NULLIF(COUNT(DISTINCT user_id), 0),
+            4
+        ) AS conversion_rate,
+        SUM(conversion_revenue) AS revenue,
+        ROUND(SUM(conversion_revenue) / NULLIF(COUNT(DISTINCT user_id), 0), 2) AS avg_revenue_per_user
+    FROM ab_test_assignments
+    GROUP BY variant
+),
+control AS (
+    SELECT
+        users_count AS control_users_count,
+        conversions_count AS control_conversions_count,
+        conversion_rate AS control_conversion_rate
+    FROM experiment_results
+    WHERE variant = 'control'
+)
+SELECT
+    er.variant,
+    er.users_count,
+    er.conversions_count,
+    er.conversion_rate,
+    er.revenue,
+    er.avg_revenue_per_user,
+    ROUND(er.conversion_rate - c.control_conversion_rate, 4) AS absolute_uplift,
+    ROUND((er.conversion_rate - c.control_conversion_rate) / NULLIF(c.control_conversion_rate, 0), 4) AS relative_uplift,
+    ROUND(
+        (er.conversion_rate - c.control_conversion_rate)
+        / NULLIF(
+            SQRT(
+                (
+                    (er.conversions_count + c.control_conversions_count)::NUMERIC
+                    / NULLIF(er.users_count + c.control_users_count, 0)
+                )
+                * (
+                    1
+                    - (
+                        (er.conversions_count + c.control_conversions_count)::NUMERIC
+                        / NULLIF(er.users_count + c.control_users_count, 0)
+                    )
+                )
+                * (1::NUMERIC / er.users_count + 1::NUMERIC / c.control_users_count)
+            ),
+            0
+        ),
+        4
+    ) AS z_score
+FROM experiment_results er
+CROSS JOIN control c
+ORDER BY er.variant;
+
+-- 10. Лучшие категории товаров по выручке
 SELECT
     p.category,
     COUNT(DISTINCT o.order_id) AS paid_orders_count,
@@ -178,7 +289,7 @@ WHERE o.payment_status = 'paid'
 GROUP BY p.category
 ORDER BY revenue DESC;
 
--- 9. Топ-10 товаров по выручке
+-- 11. Топ-10 товаров по выручке
 SELECT
     p.product_id,
     p.product_name,
@@ -194,7 +305,7 @@ GROUP BY p.product_id, p.product_name, p.category
 ORDER BY revenue DESC
 LIMIT 10;
 
--- 10. Месячный когортный retention
+-- 12. Месячный когортный retention
 WITH cohort_base AS (
     SELECT
         user_id,
@@ -238,7 +349,7 @@ FROM cohort_activity ca
 JOIN cohort_sizes cs ON cs.cohort_month = ca.cohort_month
 ORDER BY ca.cohort_month, ca.month_number;
 
--- 11. Пользователи, которые добавили товар в корзину, но не совершили покупку
+-- 13. Пользователи, которые добавили товар в корзину, но не совершили покупку
 WITH cart_users AS (
     SELECT DISTINCT user_id
     FROM events

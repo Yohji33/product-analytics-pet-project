@@ -20,6 +20,8 @@ def load_data() -> dict[str, pd.DataFrame]:
     return {
         "users": pd.read_csv(DATA_DIR / "users.csv", parse_dates=["signup_date", "first_session_at"]),
         "products": pd.read_csv(DATA_DIR / "products.csv", parse_dates=["created_at"]),
+        "marketing_spend": pd.read_csv(DATA_DIR / "marketing_spend.csv"),
+        "ab_test_assignments": pd.read_csv(DATA_DIR / "ab_test_assignments.csv", parse_dates=["assigned_at"]),
         "sessions": pd.read_csv(
             DATA_DIR / "sessions.csv",
             parse_dates=["session_started_at", "session_ended_at"],
@@ -143,6 +145,72 @@ def save_device_conversion_chart(sessions: pd.DataFrame, orders: pd.DataFrame) -
     return device_metrics
 
 
+def save_ltv_cac_chart(users: pd.DataFrame, orders: pd.DataFrame, marketing_spend: pd.DataFrame) -> pd.DataFrame:
+    paid_orders = orders[orders["payment_status"] == "paid"]
+    user_orders = paid_orders.groupby("user_id", as_index=False).agg(
+        orders_count=("order_id", "nunique"),
+        revenue=("total_amount", "sum"),
+    )
+    user_ltv = (
+        users[["user_id", "acquisition_channel"]]
+        .merge(user_orders, on="user_id", how="left")
+        .fillna({"orders_count": 0, "revenue": 0})
+    )
+
+    rows = []
+    for channel, group in user_ltv.groupby("acquisition_channel"):
+        paying_users_count = (group["orders_count"] > 0).sum()
+        total_revenue = group["revenue"].sum()
+        rows.append(
+            {
+                "acquisition_channel": channel,
+                "avg_ltv_per_paying_user": total_revenue / paying_users_count,
+                "paying_users_count": paying_users_count,
+            }
+        )
+
+    metrics = pd.DataFrame(rows).merge(marketing_spend, on="acquisition_channel", how="left")
+    metrics["cac"] = metrics["marketing_spend"] / metrics["paying_users_count"]
+    metrics["ltv_cac_ratio"] = metrics["avg_ltv_per_paying_user"] / metrics["cac"]
+
+    plt.figure(figsize=(10, 6))
+    sns.barplot(
+        data=metrics.sort_values("ltv_cac_ratio", ascending=False),
+        x="acquisition_channel",
+        y="ltv_cac_ratio",
+        hue="acquisition_channel",
+        legend=False,
+    )
+    plt.title("LTV/CAC по каналам привлечения")
+    plt.xlabel("Канал привлечения")
+    plt.ylabel("LTV/CAC")
+    plt.tight_layout()
+    plt.savefig(FIGURES_DIR / "ltv_cac_by_channel.png", dpi=160)
+    plt.close()
+
+    return metrics.sort_values("ltv_cac_ratio", ascending=False)
+
+
+def save_ab_test_conversion_chart(ab_test_assignments: pd.DataFrame) -> pd.DataFrame:
+    ab_results = (
+        ab_test_assignments.groupby("variant", as_index=False)
+        .agg(users_count=("user_id", "nunique"), conversions_count=("converted", "sum"))
+        .sort_values("variant")
+    )
+    ab_results["conversion_rate"] = ab_results["conversions_count"] / ab_results["users_count"]
+
+    plt.figure(figsize=(8, 6))
+    sns.barplot(data=ab_results, x="variant", y="conversion_rate", hue="variant", legend=False)
+    plt.title("A/B-тест CTA: конверсия по вариантам")
+    plt.xlabel("Вариант")
+    plt.ylabel("Конверсия")
+    plt.tight_layout()
+    plt.savefig(FIGURES_DIR / "ab_test_conversion.png", dpi=160)
+    plt.close()
+
+    return ab_results
+
+
 def main() -> None:
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     sns.set_theme(style="whitegrid")
@@ -153,6 +221,8 @@ def main() -> None:
     category_revenue = save_category_revenue_chart(data["products"], data["orders"], data["order_items"])
     funnel = save_funnel_chart(data["events"])
     device_metrics = save_device_conversion_chart(data["sessions"], data["orders"])
+    ltv_cac = save_ltv_cac_chart(data["users"], data["orders"], data["marketing_spend"])
+    ab_test_results = save_ab_test_conversion_chart(data["ab_test_assignments"])
 
     print("EDA завершен.")
     print("\nМетрики по месяцам:")
@@ -163,6 +233,10 @@ def main() -> None:
     print(funnel)
     print("\nМетрики по устройствам:")
     print(device_metrics)
+    print("\nLTV/CAC по каналам:")
+    print(ltv_cac)
+    print("\nA/B-тест:")
+    print(ab_test_results)
     print(f"\nГрафики сохранены в: {FIGURES_DIR}")
 
 

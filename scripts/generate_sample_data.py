@@ -97,6 +97,34 @@ def generate_marketing_spend() -> list[dict]:
     ]
 
 
+def generate_ab_test_assignments(users: list[dict]) -> list[dict]:
+    assignments = []
+    experiment_name = "product_card_cta_test"
+    assigned_at = datetime(2025, 7, 1, 9, 0, 0)
+    converted_limits = {"control": 45, "test": 65}
+    variant_counts = {"control": 0, "test": 0}
+
+    for assignment_id, user in enumerate(sorted(users, key=lambda item: item["user_id"]), start=1):
+        variant = "control" if assignment_id % 2 else "test"
+        variant_counts[variant] += 1
+        converted = variant_counts[variant] <= converted_limits[variant]
+        base_revenue = 480 if variant == "control" else 520
+        conversion_revenue = round(base_revenue + (int(user["user_id"]) % 7) * 17.35, 2) if converted else 0
+
+        assignments.append(
+            {
+                "assignment_id": assignment_id,
+                "user_id": user["user_id"],
+                "experiment_name": experiment_name,
+                "variant": variant,
+                "assigned_at": (assigned_at + timedelta(minutes=assignment_id * 17)).isoformat(sep=" "),
+                "converted": "true" if converted else "false",
+                "conversion_revenue": conversion_revenue,
+            }
+        )
+    return assignments
+
+
 def generate_sessions(users: list[dict]) -> list[dict]:
     traffic_sources = ["google", "yandex", "telegram", "vk", "email", "direct"]
     sessions = []
@@ -232,6 +260,7 @@ def main() -> None:
     users = generate_users(n_users=500)
     products = generate_products()
     marketing_spend = generate_marketing_spend()
+    ab_test_assignments = generate_ab_test_assignments(users)
     sessions = generate_sessions(users)
     orders, order_items, events = generate_orders(users, sessions, products)
 
@@ -259,6 +288,19 @@ def main() -> None:
         OUTPUT_DIR / "marketing_spend.csv",
         marketing_spend,
         ["acquisition_channel", "marketing_spend"],
+    )
+    write_csv(
+        OUTPUT_DIR / "ab_test_assignments.csv",
+        ab_test_assignments,
+        [
+            "assignment_id",
+            "user_id",
+            "experiment_name",
+            "variant",
+            "assigned_at",
+            "converted",
+            "conversion_revenue",
+        ],
     )
     write_csv(
         OUTPUT_DIR / "sessions.csv",
@@ -303,6 +345,7 @@ def main() -> None:
     print(f"Users: {len(users)}")
     print(f"Products: {len(products)}")
     print(f"Marketing spend rows: {len(marketing_spend)}")
+    print(f"A/B test assignments: {len(ab_test_assignments)}")
     print(f"Sessions: {len(sessions)}")
     print(f"Orders: {len(orders)}")
     print(f"Order items: {len(order_items)}")

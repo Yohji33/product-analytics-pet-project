@@ -26,6 +26,16 @@ CREATE TABLE marketing_spend (
     marketing_spend NUMERIC(12, 2) NOT NULL CHECK (marketing_spend >= 0)
 );
 
+CREATE TABLE ab_test_assignments (
+    assignment_id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(user_id),
+    experiment_name VARCHAR(100) NOT NULL,
+    variant VARCHAR(50) NOT NULL,
+    assigned_at TIMESTAMP NOT NULL,
+    converted BOOLEAN NOT NULL,
+    conversion_revenue NUMERIC(10, 2) NOT NULL DEFAULT 0
+);
+
 CREATE TABLE sessions (
     session_id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL REFERENCES users(user_id),
@@ -68,6 +78,8 @@ CREATE TABLE events (
 );
 
 CREATE INDEX idx_users_signup_date ON users(signup_date);
+CREATE INDEX idx_ab_test_assignments_user_id ON ab_test_assignments(user_id);
+CREATE INDEX idx_ab_test_assignments_experiment ON ab_test_assignments(experiment_name, variant);
 CREATE INDEX idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX idx_sessions_started_at ON sessions(session_started_at);
 CREATE INDEX idx_orders_user_id ON orders(user_id);
